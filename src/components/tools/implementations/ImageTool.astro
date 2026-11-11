@@ -1,0 +1,248 @@
+---
+import type { Tool } from '@/data/tools';
+
+interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+---
+
+<div class="space-y-6 image-tool-container" data-slug={tool.slug}>
+  {/* Dropzone for File Upload */}
+  <div
+    id="image-dropzone"
+    class="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-neutral-300 bg-neutral-50/70 p-8 text-center transition hover:border-orange-500/70 hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900/40 dark:hover:border-orange-500/70 cursor-pointer"
+  >
+    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-100 text-orange-600 dark:bg-orange-950 dark:text-orange-400 mb-3">
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    </div>
+    <p class="text-sm font-bold text-neutral-800 dark:text-neutral-200">
+      Click to upload or drag & drop image
+    </p>
+    <p class="mt-1 text-xs text-neutral-500">
+      Supports PNG, JPG, WebP, GIF, SVG (Processed 100% locally in browser memory)
+    </p>
+    <input type="file" id="image-file-input" accept="image/*" class="hidden" />
+  </div>
+
+  {/* Active Image Workspace */}
+  <div id="image-workspace" class="hidden space-y-6">
+    {/* Controls depending on tool */}
+    <div class="rounded-xl border border-neutral-200/80 bg-white p-4 dark:border-neutral-700/60 dark:bg-neutral-800/60">
+      {tool.slug === 'compress-image' && (
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold uppercase text-neutral-500">Quality Compression Level</label>
+            <span id="compress-quality-val" class="text-xs font-black text-orange-500">80%</span>
+          </div>
+          <input type="range" id="compress-quality" min="10" max="100" value="80" class="w-full accent-orange-500" />
+        </div>
+      )}
+
+      {tool.slug === 'resize-image' && (
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <div>
+            <label class="block text-xs font-semibold text-neutral-500 mb-1">Width (px)</label>
+            <input type="number" id="resize-w" class="w-full rounded-lg border border-neutral-300 p-2 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-neutral-500 mb-1">Height (px)</label>
+            <input type="number" id="resize-h" class="w-full rounded-lg border border-neutral-300 p-2 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+          </div>
+          <div class="flex items-end">
+            <label class="flex items-center gap-2 text-xs font-semibold text-neutral-600 dark:text-neutral-300 pb-2">
+              <input type="checkbox" id="resize-lock" checked class="rounded text-orange-500" />
+              Lock Aspect Ratio
+            </label>
+          </div>
+        </div>
+      )}
+
+      {tool.slug === 'image-to-base64' && (
+        <div class="space-y-2">
+          <label class="block text-xs font-bold uppercase text-neutral-500">Base64 Data URI</label>
+          <textarea id="base64-output" rows="5" readonly class="w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 font-mono text-xs dark:border-neutral-700 dark:bg-neutral-900"></textarea>
+          <button type="button" id="copy-b64-btn" class="rounded-lg bg-orange-500 px-3 py-1.5 text-xs font-bold text-white hover:bg-orange-600">Copy Base64</button>
+        </div>
+      )}
+    </div>
+
+    {/* Preview and Download */}
+    <div class="flex flex-col items-center justify-center gap-4 rounded-2xl bg-neutral-50 p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700">
+      <div class="max-h-80 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-200/40 p-2 shadow-inner dark:border-neutral-700">
+        <canvas id="image-canvas" class="max-h-72 max-w-full object-contain rounded-lg"></canvas>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          id="image-download-btn"
+          class="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-orange-500/20 hover:bg-orange-600 transition"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span id="download-label">Download Processed Image</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const container = document.querySelector('.image-tool-container');
+  if (container) {
+    const slug = container.getAttribute('data-slug');
+    const dropzone = document.getElementById('image-dropzone');
+    const fileInput = document.getElementById('image-file-input') as HTMLInputElement;
+    const workspace = document.getElementById('image-workspace');
+    const canvas = document.getElementById('image-canvas') as HTMLCanvasElement;
+    const downloadBtn = document.getElementById('image-download-btn');
+    const downloadLabel = document.getElementById('download-label');
+
+    let currentImg: HTMLImageElement | null = null;
+    let originalName = 'image';
+
+    dropzone?.addEventListener('click', () => fileInput?.click());
+    dropzone?.addEventListener('dragover', e => {
+      e.preventDefault();
+      dropzone.classList.add('border-orange-500');
+    });
+    dropzone?.addEventListener('dragleave', () => dropzone.classList.remove('border-orange-500'));
+    dropzone?.addEventListener('drop', e => {
+      e.preventDefault();
+      dropzone.classList.remove('border-orange-500');
+      if (e.dataTransfer?.files.length) handleFile(e.dataTransfer.files[0]);
+    });
+
+    fileInput?.addEventListener('change', () => {
+      if (fileInput.files?.length) handleFile(fileInput.files[0]);
+    });
+
+    function handleFile(file: File) {
+      originalName = file.name.replace(/\.[^/.]+$/, '');
+      const reader = new FileReader();
+
+      if (slug === 'image-to-base64') {
+        reader.onload = e => {
+          const b64Out = document.getElementById('base64-output') as HTMLTextAreaElement;
+          if (b64Out && e.target?.result) {
+            b64Out.value = e.target.result as string;
+            workspace?.classList.remove('hidden');
+          }
+        };
+        reader.readAsDataURL(file);
+        return;
+      }
+
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          currentImg = img;
+          workspace?.classList.remove('hidden');
+          renderCanvas();
+        };
+        img.src = e.target?.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function renderCanvas() {
+      if (!currentImg || !canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let w = currentImg.width;
+      let h = currentImg.height;
+
+      if (slug === 'resize-image') {
+        const rw = document.getElementById('resize-w') as HTMLInputElement;
+        const rh = document.getElementById('resize-h') as HTMLInputElement;
+        if (rw && !rw.value) rw.value = w.toString();
+        if (rh && !rh.value) rh.value = h.toString();
+        w = parseInt(rw.value, 10) || w;
+        h = parseInt(rh.value, 10) || h;
+      } else if (slug === 'favicon-generator') {
+        w = 32;
+        h = 32;
+      }
+
+      canvas.width = w;
+      canvas.height = h;
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(currentImg, 0, 0, w, h);
+    }
+
+    // Compression Slider
+    const qualitySlider = document.getElementById('compress-quality') as HTMLInputElement;
+    const qualityVal = document.getElementById('compress-quality-val');
+    qualitySlider?.addEventListener('input', () => {
+      if (qualityVal) qualityVal.textContent = `${qualitySlider.value}%`;
+    });
+
+    // Resize inputs
+    const rw = document.getElementById('resize-w') as HTMLInputElement;
+    const rh = document.getElementById('resize-h') as HTMLInputElement;
+    const rLock = document.getElementById('resize-lock') as HTMLInputElement;
+
+    rw?.addEventListener('input', () => {
+      if (currentImg && rLock?.checked && rh) {
+        const ratio = currentImg.height / currentImg.width;
+        rh.value = Math.round((parseInt(rw.value, 10) || 1) * ratio).toString();
+      }
+      renderCanvas();
+    });
+
+    rh?.addEventListener('input', () => {
+      if (currentImg && rLock?.checked && rw) {
+        const ratio = currentImg.width / currentImg.height;
+        rw.value = Math.round((parseInt(rh.value, 10) || 1) * ratio).toString();
+      }
+      renderCanvas();
+    });
+
+    // Download handler
+    downloadBtn?.addEventListener('click', () => {
+      if (!canvas) return;
+      let mime = 'image/png';
+      let ext = 'png';
+      let quality = 0.92;
+
+      if (slug === 'compress-image') {
+        mime = 'image/jpeg';
+        ext = 'jpg';
+        quality = (parseInt(qualitySlider?.value || '80', 10)) / 100;
+      } else if (slug === 'png-to-jpg') {
+        mime = 'image/jpeg';
+        ext = 'jpg';
+      } else if (slug === 'jpg-to-png') {
+        mime = 'image/png';
+        ext = 'png';
+      } else if (slug === 'webp-converter') {
+        mime = 'image/webp';
+        ext = 'webp';
+      } else if (slug === 'favicon-generator') {
+        mime = 'image/png';
+        ext = 'ico';
+      }
+
+      const a = document.createElement('a');
+      a.download = `${originalName}-${slug}.${ext}`;
+      a.href = canvas.toDataURL(mime, quality);
+      a.click();
+    });
+
+    // Copy Base64
+    document.getElementById('copy-b64-btn')?.addEventListener('click', () => {
+      const b64Out = document.getElementById('base64-output') as HTMLTextAreaElement;
+      if (b64Out?.value) {
+        navigator.clipboard.writeText(b64Out.value);
+        alert('Base64 Data URI copied to clipboard!');
+      }
+    });
+  }
+</script>
+

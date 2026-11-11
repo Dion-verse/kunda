@@ -1,0 +1,232 @@
+---
+import type { Tool } from '@/data/tools';
+
+interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+---
+
+<div class="space-y-6 business-tool-container" data-slug={tool.slug}>
+  {/* INVOICE / RECEIPT / QUOTATION GENERATOR */}
+  {(tool.slug === 'invoice-generator' || tool.slug === 'receipt-generator' || tool.slug === 'quotation-generator' || tool.slug === 'payslip-generator') && (
+    <div class="space-y-6">
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-500 mb-1">Company / Issuer Name</label>
+          <input type="text" id="doc-issuer" value="KUNDA Studio Ltd." class="w-full rounded-xl border border-neutral-300 p-2.5 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-500 mb-1">Client / Recipient Name</label>
+          <input type="text" id="doc-client" value="Acme Corporation" class="w-full rounded-xl border border-neutral-300 p-2.5 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-500 mb-1">Document Reference #</label>
+          <input type="text" id="doc-ref" value="INV-2026-001" class="w-full rounded-xl border border-neutral-300 p-2.5 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-500 mb-1">Date</label>
+          <input type="date" id="doc-date" class="w-full rounded-xl border border-neutral-300 p-2.5 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <label class="block text-xs font-bold uppercase tracking-wider text-neutral-500">Line Items</label>
+        <div id="items-list" class="space-y-2">
+          <div class="flex items-center gap-2 item-row">
+            <input type="text" placeholder="Description" value="Digital Software Architecture" class="grow rounded-lg border border-neutral-300 p-2 text-sm item-desc dark:border-neutral-700 dark:bg-neutral-800" />
+            <input type="number" placeholder="Qty" value="1" class="w-20 rounded-lg border border-neutral-300 p-2 text-sm item-qty dark:border-neutral-700 dark:bg-neutral-800" />
+            <input type="number" placeholder="Rate ($)" value="1200" class="w-28 rounded-lg border border-neutral-300 p-2 text-sm item-rate dark:border-neutral-700 dark:bg-neutral-800" />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-neutral-200 pt-4 dark:border-neutral-700">
+        <div class="text-xs text-neutral-500">
+          Generated client-side via jsPDF. No financial data is sent to external servers.
+        </div>
+        <button
+          type="button"
+          id="export-pdf-btn"
+          class="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-2.5 text-sm font-bold text-white shadow-md shadow-orange-500/20 hover:bg-orange-600 transition"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Download PDF
+        </button>
+      </div>
+    </div>
+  )}
+
+  {/* BUSINESS NAME GENERATOR */}
+  {tool.slug === 'business-name-generator' && (
+    <div class="max-w-xl mx-auto space-y-6">
+      <div class="flex gap-2">
+        <input type="text" id="biz-keyword" placeholder="Enter keyword (e.g. cloud, fast, code, stack)" class="grow rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        <button type="button" id="biz-gen-btn" class="rounded-xl bg-orange-500 px-5 py-3 text-sm font-bold text-white hover:bg-orange-600">Generate Names</button>
+      </div>
+      <div id="biz-results" class="grid grid-cols-2 gap-3 sm:grid-cols-3"></div>
+    </div>
+  )}
+
+  {/* PROFIT & MARGIN CALCULATOR */}
+  {(tool.slug === 'profit-calculator' || tool.slug === 'profit-margin' || tool.slug === 'vat-calculator') && (
+    <div class="max-w-xl mx-auto space-y-6">
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-500 mb-1">Cost / Baseline Amount ($)</label>
+          <input type="number" id="fin-cost" value="50" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-500 mb-1">Selling Price / Tax Rate</label>
+          <input type="number" id="fin-sell" value="120" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 rounded-2xl bg-neutral-50 p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 text-center">
+        <div>
+          <span class="text-xs text-neutral-500">Gross Profit</span>
+          <span id="fin-profit" class="block text-3xl font-black text-emerald-600 dark:text-emerald-400">$70.00</span>
+        </div>
+        <div>
+          <span class="text-xs text-neutral-500">Profit Margin</span>
+          <span id="fin-margin" class="block text-3xl font-black text-orange-500">58.3%</span>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
+
+<script>
+  import { jsPDF } from 'jspdf';
+
+  const container = document.querySelector('.business-tool-container');
+  if (container) {
+    const slug = container.getAttribute('data-slug');
+
+    // PDF GENERATION (Invoice, Receipt, Quotation, Payslip)
+    const exportBtn = document.getElementById('export-pdf-btn');
+    const dateInput = document.getElementById('doc-date') as HTMLInputElement;
+    if (dateInput) dateInput.valueAsDate = new Date();
+
+    exportBtn?.addEventListener('click', () => {
+      const issuer = (document.getElementById('doc-issuer') as HTMLInputElement)?.value || 'KUNDA';
+      const client = (document.getElementById('doc-client') as HTMLInputElement)?.value || 'Client';
+      const ref = (document.getElementById('doc-ref') as HTMLInputElement)?.value || 'DOC-001';
+      const date = dateInput?.value || new Date().toISOString().split('T')[0];
+
+      const doc = new jsPDF();
+      doc.setFont('helvetica');
+
+      // Header Banner
+      doc.setFontSize(22);
+      doc.setTextColor(249, 115, 22); // KUNDA Orange
+      doc.text(slug ? slug.replace('-', ' ').toUpperCase() : 'DOCUMENT', 20, 25);
+
+      doc.setFontSize(10);
+      doc.setTextColor(100, 116, 139);
+      doc.text(`Reference: ${ref}`, 20, 33);
+      doc.text(`Date: ${date}`, 20, 39);
+
+      // Issuer & Client
+      doc.setFontSize(12);
+      doc.setTextColor(30, 41, 59);
+      doc.text('Issued By:', 20, 52);
+      doc.setFontSize(10);
+      doc.text(issuer, 20, 58);
+
+      doc.setFontSize(12);
+      doc.text('Billed To:', 120, 52);
+      doc.setFontSize(10);
+      doc.text(client, 120, 58);
+
+      // Line items table
+      let y = 75;
+      doc.setDrawColor(226, 232, 240);
+      doc.line(20, y, 190, y);
+      y += 8;
+
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Description', 20, y);
+      doc.text('Qty', 130, y);
+      doc.text('Rate', 150, y);
+      doc.text('Amount', 175, y);
+      y += 4;
+      doc.line(20, y, 190, y);
+      y += 8;
+
+      let subtotal = 0;
+      doc.setFont('helvetica', 'normal');
+      document.querySelectorAll('.item-row').forEach(row => {
+        const desc = (row.querySelector('.item-desc') as HTMLInputElement)?.value || 'Item';
+        const qty = parseFloat((row.querySelector('.item-qty') as HTMLInputElement)?.value) || 1;
+        const rate = parseFloat((row.querySelector('.item-rate') as HTMLInputElement)?.value) || 0;
+        const total = qty * rate;
+        subtotal += total;
+
+        doc.text(desc, 20, y);
+        doc.text(qty.toString(), 130, y);
+        doc.text(`$${rate.toFixed(2)}`, 150, y);
+        doc.text(`$${total.toFixed(2)}`, 175, y);
+        y += 8;
+      });
+
+      doc.line(20, y, 190, y);
+      y += 10;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(12);
+      doc.text(`Total Due: $${subtotal.toFixed(2)}`, 140, y);
+
+      // Footer
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(148, 163, 184);
+      doc.text('Generated in-browser via KUNDA Digital Utilities (kunda.works) â€” 100% Client-Side Privacy', 20, 280);
+
+      doc.save(`${ref}.pdf`);
+    });
+
+    // BUSINESS NAME GENERATOR
+    const bizInput = document.getElementById('biz-keyword') as HTMLInputElement;
+    const bizBtn = document.getElementById('biz-gen-btn');
+    const bizRes = document.getElementById('biz-results');
+    const SUFFIXES = ['Stack', 'Pulse', 'Flow', 'Grid', 'Sync', 'Craft', 'Lab', 'Base', 'Forge', 'Sphere', 'Logic', 'Wave'];
+
+    function generateBizNames() {
+      if (!bizRes) return;
+      const kw = (bizInput?.value || 'Tool').trim();
+      bizRes.innerHTML = '';
+      SUFFIXES.forEach(sfx => {
+        const div = document.createElement('div');
+        div.className = 'rounded-xl border border-neutral-200 bg-white p-3 text-center text-sm font-bold text-neutral-800 shadow-xs hover:border-orange-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200';
+        div.textContent = `${kw.charAt(0).toUpperCase() + kw.slice(1)}${sfx}`;
+        bizRes.appendChild(div);
+      });
+    }
+
+    bizBtn?.addEventListener('click', generateBizNames);
+    if (bizRes) generateBizNames();
+
+    // PROFIT CALCULATOR
+    const costIn = document.getElementById('fin-cost') as HTMLInputElement;
+    const sellIn = document.getElementById('fin-sell') as HTMLInputElement;
+    const profitOut = document.getElementById('fin-profit');
+    const marginOut = document.getElementById('fin-margin');
+
+    function updateFinance() {
+      const c = parseFloat(costIn?.value) || 0;
+      const s = parseFloat(sellIn?.value) || 0;
+      const profit = s - c;
+      const margin = s > 0 ? (profit / s) * 100 : 0;
+      if (profitOut) profitOut.textContent = `$${profit.toFixed(2)}`;
+      if (marginOut) marginOut.textContent = `${margin.toFixed(1)}%`;
+    }
+
+    costIn?.addEventListener('input', updateFinance);
+    sellIn?.addEventListener('input', updateFinance);
+  }
+</script>
+

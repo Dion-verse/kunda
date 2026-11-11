@@ -1,29 +1,25 @@
 ---
-title: ScrewFast Docs
+title: KUNDA Docs
 head:
   - tag: title
-    content: ScrewFast Docs
-description: Explore ScrewFast's comprehensive documentation for an in-depth look at our premium tools and construction services.
+    content: KUNDA Documentation Hub
+description: Guides, technical specifications, and reference architecture for KUNDA software, micro-SaaS, and online tools.
 template: splash
 editUrl: false
 lastUpdated: false
 next: false
 hero:
-  title: Documentation Hub
-  tagline: Your central hub for streamlined tool guidance, detailed service docs, and project support.
-  image:
-    alt: A ScrewFast's Logo
-    dark: ../../images/starlight/screwfast_hero.svg
-    light: ../../images/starlight/screwfast_hero_dark.svg
+  title: KUNDA Documentation Hub
+  tagline: Your central reference for digital products, client-side tools, and developer guides.
   actions:
-    - text: Get started
+    - text: Get Started
       icon: right-arrow
       variant: primary
       link: /guides/getting-started/
-    - text: View on GitHub
+    - text: Explore Free Tools
       icon: external
       variant: minimal
-      link: https://github.com/mearashadowfax/ScrewFast
+      link: /tools/
 ---
 
 import '@styles/starlight_main.css';
@@ -32,23 +28,18 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 <CardGrid stagger>
 
 <Card title="Quick Start Guides" icon="document">
-  Get up and running swiftly with our straightforward and concise guides,
-  tailored for new users and seasoned experts alike.
+  Step-by-step walkthroughs to quickly understand the KUNDA ecosystem and integrate its utilities into your product workflow.
 </Card>
 
-<Card title="Tools & Equipment" icon="seti:eslint">
-  Discover the complete lineup of ScrewFast's superior quality tools and
-  equipment. Each subsection offers detailed specifications, usage instructions,
-  and maintenance tips.
+<Card title="Free Online Tools" icon="seti:eslint">
+  Comprehensive guides and privacy architecture for the JSON Formatter, Password Entropy Analyzer, and QR Code Generator.
 </Card>
 
-<Card title="Construction Services" icon="seti:puppet">
-  Discover the complete lineup of ScrewFast's superior quality tools and
-  equipment. Each subsection offers detailed specifications, usage instructions,
-  and maintenance tips.
+<Card title="Micro-SaaS Blueprints" icon="seti:puppet">
+  Architecture documentation, API specifications, and operational roadmaps for QueuePass, AssetSnag, and SeatSentry.
 </Card>
 
-   <Card title="Advanced Topics" icon="seti:terraform">
-    Discover the complete lineup of ScrewFast's superior quality tools and equipment. Each subsection offers detailed specifications, usage instructions, and maintenance tips.
-  </Card>
+<Card title="Architecture & Specs" icon="seti:terraform">
+  Technical specifications covering Astro edge rendering, WebCrypto implementation, and serverless edge deployment.
+</Card>
 </CardGrid>

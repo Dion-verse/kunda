@@ -97,9 +97,31 @@ const insightsCollection = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      // contents: z.array(z.string()),
       cardImage: image(),
       cardImageAlt: z.string(),
+    }),
+});
+
+const toolsCollection = defineCollection({
+  loader: glob({
+    pattern: '**/[^_]*.{md,mdx}',
+    base: './src/content/tools',
+  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      category: z.string(),
+      icon: z.string().optional(),
+      tags: z.array(z.string()).default([]),
+      featured: z.boolean().default(false),
+      popular: z.boolean().default(false),
+      difficulty: z.string().optional(),
+      relatedTools: z.array(z.string()).optional(),
+      execution: z.enum(['client', 'server']).default('client'),
+      component: z.string().optional(),
+      previewImage: image().optional(),
+      previewAlt: z.string().optional(),
     }),
 });
 
@@ -108,4 +130,6 @@ export const collections = {
   products: productsCollection,
   blog: blogCollection,
   insights: insightsCollection,
+  tools: toolsCollection,
 };
+

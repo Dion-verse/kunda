@@ -38,7 +38,7 @@ const articles: Article[] = [
     title: articleCopy.craftsmanship.title,
     subTitle: articleCopy.craftsmanship.subTitle,
     images: [{ src: beforeAfter, alt: articleCopy.craftsmanship.imageAlts[0] }],
-    cta: { title: articleCopy.craftsmanship.cta, url: '#' },
+    cta: { title: articleCopy.craftsmanship.cta, url: '/contact' },
   },
   {
     title: articleCopy.oversight.title,
@@ -60,7 +60,7 @@ const articles: Article[] = [
       { src: progressBuilding, alt: articleCopy.bespoke.imageAlts[0] },
       { src: underConstruction, alt: articleCopy.bespoke.imageAlts[1] },
     ],
-    cta: { title: articleCopy.bespoke.cta, url: '#' },
+    cta: { title: articleCopy.bespoke.cta, url: '/contact' },
   },
 ];
 ---
@@ -73,7 +73,7 @@ const articles: Article[] = [
   <MainSection
     title={copy.intro.title}
     subTitle={copy.intro.subTitle}
-    cta={{ title: copy.intro.cta, url: '#' }}
+    cta={{ title: copy.intro.cta, url: '/contact' }}
   />
   <AlternatingSections articles={articles} />
   <FeaturesStats

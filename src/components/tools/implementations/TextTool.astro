@@ -1,0 +1,391 @@
+---
+import type { Tool } from '@/data/tools';
+
+interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+---
+
+<div class="space-y-6 text-tool-container" data-slug={tool.slug}>
+  {/* Controls & Quick Actions */}
+  <div class="flex flex-wrap items-center justify-between gap-3 border-b border-neutral-100 pb-4 dark:border-neutral-700/60">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+        Workspace Mode: <span class="text-orange-500 font-bold">{tool.title}</span>
+      </span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="clear-btn"
+        class="inline-flex items-center gap-1 rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-xs font-semibold text-neutral-600 hover:bg-neutral-50 hover:text-red-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+      >
+        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+        Clear
+      </button>
+      <button
+        type="button"
+        id="copy-btn"
+        class="inline-flex items-center gap-1 rounded-lg bg-orange-500 px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-orange-600 transition"
+      >
+        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+        <span id="copy-btn-text">Copy Result</span>
+      </button>
+    </div>
+  </div>
+
+  {/* Specific tool sub-panels */}
+  {tool.slug === 'lorem-ipsum' ? (
+    <div class="space-y-4">
+      <div class="flex flex-wrap items-center gap-4">
+        <label class="text-xs font-semibold text-neutral-700 dark:text-neutral-300">
+          Paragraphs:
+          <input
+            type="number"
+            id="lorem-count"
+            min="1"
+            max="20"
+            value="3"
+            class="ms-2 w-20 rounded-lg border border-neutral-300 px-2.5 py-1 text-sm dark:border-neutral-700 dark:bg-neutral-800"
+          />
+        </label>
+        <button
+          type="button"
+          id="lorem-generate-btn"
+          class="rounded-lg bg-orange-500 px-4 py-1.5 text-xs font-bold text-white hover:bg-orange-600"
+        >
+          Generate Text
+        </button>
+      </div>
+      <textarea
+        id="text-output"
+        rows="10"
+        readonly
+        class="block w-full rounded-xl border border-neutral-300 bg-neutral-50 p-4 font-mono text-sm leading-relaxed text-neutral-800 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
+        placeholder="Generated Lorem Ipsum will appear here..."
+      ></textarea>
+    </div>
+  ) : tool.slug === 'text-diff' ? (
+    <div class="space-y-4">
+      <div class="grid gap-4 md:grid-cols-2">
+        <div>
+          <label class="mb-1.5 block text-xs font-semibold text-neutral-700 dark:text-neutral-300">
+            Original Text (Before)
+          </label>
+          <textarea
+            id="diff-text-original"
+            rows="8"
+            class="block w-full rounded-xl border border-neutral-300 p-3 font-mono text-sm dark:border-neutral-700 dark:bg-neutral-800"
+            placeholder="Paste original text here..."
+          ></textarea>
+        </div>
+        <div>
+          <label class="mb-1.5 block text-xs font-semibold text-neutral-700 dark:text-neutral-300">
+            Modified Text (After)
+          </label>
+          <textarea
+            id="diff-text-modified"
+            rows="8"
+            class="block w-full rounded-xl border border-neutral-300 p-3 font-mono text-sm dark:border-neutral-700 dark:bg-neutral-800"
+            placeholder="Paste modified text here..."
+          ></textarea>
+        </div>
+      </div>
+      <button
+        type="button"
+        id="run-diff-btn"
+        class="rounded-lg bg-orange-500 px-5 py-2 text-xs font-bold text-white hover:bg-orange-600"
+      >
+        Compare Differences
+      </button>
+      <div class="mt-4">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-2">Diff Output:</h4>
+        <div
+          id="diff-result-view"
+          class="min-h-32 rounded-xl border border-neutral-200 bg-neutral-50 p-4 font-mono text-sm leading-relaxed whitespace-pre-wrap dark:border-neutral-700 dark:bg-neutral-900"
+        >
+          <span class="text-neutral-400">Differences will be highlighted here (green = added, red = removed)...</span>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div class="space-y-4">
+      {/* Live Stats bar for counters */}
+      {(tool.slug === 'word-counter' || tool.slug === 'character-counter') && (
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5 rounded-xl border border-neutral-200/80 bg-neutral-50/70 p-3.5 dark:border-neutral-700/60 dark:bg-neutral-800/40">
+          <div class="text-center">
+            <span id="stat-words" class="block text-xl font-extrabold text-orange-500">0</span>
+            <span class="text-[11px] font-semibold text-neutral-500 dark:text-neutral-400">Words</span>
+          </div>
+          <div class="text-center">
+            <span id="stat-chars" class="block text-xl font-extrabold text-neutral-800 dark:text-neutral-100">0</span>
+            <span class="text-[11px] font-semibold text-neutral-500 dark:text-neutral-400">Characters</span>
+          </div>
+          <div class="text-center">
+            <span id="stat-chars-no-space" class="block text-xl font-extrabold text-neutral-800 dark:text-neutral-100">0</span>
+            <span class="text-[11px] font-semibold text-neutral-500 dark:text-neutral-400">Without Spaces</span>
+          </div>
+          <div class="text-center">
+            <span id="stat-sentences" class="block text-xl font-extrabold text-neutral-800 dark:text-neutral-100">0</span>
+            <span class="text-[11px] font-semibold text-neutral-500 dark:text-neutral-400">Sentences</span>
+          </div>
+          <div class="text-center">
+            <span id="stat-read-time" class="block text-xl font-extrabold text-emerald-600 dark:text-emerald-400">0m</span>
+            <span class="text-[11px] font-semibold text-neutral-500 dark:text-neutral-400">Reading Time</span>
+          </div>
+        </div>
+      )}
+
+      {/* Case Converter Action Pills */}
+      {tool.slug === 'case-converter' && (
+        <div class="flex flex-wrap gap-2">
+          <button type="button" data-case="upper" class="case-btn rounded-lg bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-orange-500 hover:text-white dark:bg-neutral-800 dark:text-neutral-300 transition">UPPERCASE</button>
+          <button type="button" data-case="lower" class="case-btn rounded-lg bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-orange-500 hover:text-white dark:bg-neutral-800 dark:text-neutral-300 transition">lowercase</button>
+          <button type="button" data-case="title" class="case-btn rounded-lg bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-orange-500 hover:text-white dark:bg-neutral-800 dark:text-neutral-300 transition">Title Case</button>
+          <button type="button" data-case="camel" class="case-btn rounded-lg bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-orange-500 hover:text-white dark:bg-neutral-800 dark:text-neutral-300 transition">camelCase</button>
+          <button type="button" data-case="snake" class="case-btn rounded-lg bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-orange-500 hover:text-white dark:bg-neutral-800 dark:text-neutral-300 transition">snake_case</button>
+          <button type="button" data-case="kebab" class="case-btn rounded-lg bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-orange-500 hover:text-white dark:bg-neutral-800 dark:text-neutral-300 transition">kebab-case</button>
+        </div>
+      )}
+
+      {/* Text Reverser Action Pills */}
+      {tool.slug === 'text-reverser' && (
+        <div class="flex flex-wrap gap-2">
+          <button type="button" data-reverse="chars" class="rev-btn rounded-lg bg-orange-500 px-3 py-1.5 text-xs font-bold text-white hover:bg-orange-600 transition">Reverse Characters</button>
+          <button type="button" data-reverse="words" class="rev-btn rounded-lg bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-orange-500 hover:text-white dark:bg-neutral-800 dark:text-neutral-300 transition">Reverse Words</button>
+          <button type="button" data-reverse="lines" class="rev-btn rounded-lg bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-orange-500 hover:text-white dark:bg-neutral-800 dark:text-neutral-300 transition">Reverse Lines</button>
+        </div>
+      )}
+
+      {/* Remove Duplicate Lines Action Pills */}
+      {tool.slug === 'remove-duplicates' && (
+        <div class="flex flex-wrap gap-2">
+          <button type="button" id="dedupe-btn" class="rounded-lg bg-orange-500 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-orange-600 transition">Remove Duplicate Lines</button>
+          <button type="button" id="sort-az-btn" class="rounded-lg bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 transition">Sort Aâ†’Z</button>
+          <button type="button" id="trim-lines-btn" class="rounded-lg bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 transition">Trim Whitespace</button>
+        </div>
+      )}
+
+      {/* Grammar Checker Notice */}
+      {tool.slug === 'grammar-checker' && (
+        <div class="rounded-xl border border-amber-200 bg-amber-50/70 p-3.5 text-xs text-amber-800 dark:border-amber-900/60 dark:bg-amber-950/40 dark:text-amber-300">
+          <p class="font-bold">Privacy Disclosure:</p>
+          <p class="mt-0.5">This utility uses built-in pattern rules and spell checking client-side. No user text is sent to third-party language models.</p>
+        </div>
+      )}
+
+      <textarea
+        id="main-text-input"
+        rows="10"
+        class="block w-full rounded-xl border border-neutral-300 bg-white p-4 font-mono text-sm leading-relaxed text-neutral-800 placeholder-neutral-400 focus:border-orange-500 focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500"
+        placeholder="Type or paste your text here..."
+      ></textarea>
+    </div>
+  )}
+</div>
+
+<script>
+  import DiffMatchPatch from 'diff-match-patch';
+
+  const container = document.querySelector('.text-tool-container');
+  if (container) {
+    const slug = container.getAttribute('data-slug');
+    const input = document.getElementById('main-text-input') as HTMLTextAreaElement | null;
+    const clearBtn = document.getElementById('clear-btn');
+    const copyBtn = document.getElementById('copy-btn');
+    const copyBtnText = document.getElementById('copy-btn-text');
+
+    // Stats elements
+    const statWords = document.getElementById('stat-words');
+    const statChars = document.getElementById('stat-chars');
+    const statCharsNoSpace = document.getElementById('stat-chars-no-space');
+    const statSentences = document.getElementById('stat-sentences');
+    const statReadTime = document.getElementById('stat-read-time');
+
+    function updateStats(text: string) {
+      if (!statWords) return;
+      const trimmed = text.trim();
+      const words = trimmed ? trimmed.split(/\s+/).length : 0;
+      const chars = text.length;
+      const charsNoSpace = text.replace(/\s+/g, '').length;
+      const sentences = trimmed ? (trimmed.match(/[.!?]+(\s+|$)/g) || []).length || (trimmed ? 1 : 0) : 0;
+      const readMinutes = Math.ceil(words / 200);
+
+      statWords.textContent = words.toLocaleString();
+      if (statChars) statChars.textContent = chars.toLocaleString();
+      if (statCharsNoSpace) statCharsNoSpace.textContent = charsNoSpace.toLocaleString();
+      if (statSentences) statSentences.textContent = sentences.toLocaleString();
+      if (statReadTime) statReadTime.textContent = `${readMinutes}m`;
+    }
+
+    if (input) {
+      input.addEventListener('input', () => updateStats(input.value));
+      updateStats(input.value);
+    }
+
+    // Clear handler
+    if (clearBtn && input) {
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        updateStats('');
+      });
+    }
+
+    // Copy handler
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        let contentToCopy = '';
+        if (input) contentToCopy = input.value;
+        const loremOutput = document.getElementById('text-output') as HTMLTextAreaElement | null;
+        if (loremOutput) contentToCopy = loremOutput.value;
+
+        if (contentToCopy) {
+          await navigator.clipboard.writeText(contentToCopy);
+          if (copyBtnText) copyBtnText.textContent = 'Copied!';
+          setTimeout(() => {
+            if (copyBtnText) copyBtnText.textContent = 'Copy Result';
+          }, 2000);
+        }
+      });
+    }
+
+    // Case Converter handlers
+    document.querySelectorAll('.case-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!input) return;
+        const mode = btn.getAttribute('data-case');
+        const text = input.value;
+        if (mode === 'upper') input.value = text.toUpperCase();
+        else if (mode === 'lower') input.value = text.toLowerCase();
+        else if (mode === 'title') {
+          input.value = text.replace(/\b\w+/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+        } else if (mode === 'camel') {
+          input.value = text.replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase()).replace(/^[A-Z]/, c => c.toLowerCase());
+        } else if (mode === 'snake') {
+          input.value = text.trim().toLowerCase().replace(/[\s\W-]+/g, '_');
+        } else if (mode === 'kebab') {
+          input.value = text.trim().toLowerCase().replace(/[\s\W_]+/g, '-');
+        }
+        updateStats(input.value);
+      });
+    });
+
+    // Text Reverser handlers
+    document.querySelectorAll('.rev-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!input) return;
+        const mode = btn.getAttribute('data-reverse');
+        const text = input.value;
+        if (mode === 'chars') {
+          input.value = text.split('').reverse().join('');
+        } else if (mode === 'words') {
+          input.value = text.split(/\s+/).reverse().join(' ');
+        } else if (mode === 'lines') {
+          input.value = text.split('\n').reverse().join('\n');
+        }
+        updateStats(input.value);
+      });
+    });
+
+    // Dedupe & Sort handlers
+    const dedupeBtn = document.getElementById('dedupe-btn');
+    if (dedupeBtn && input) {
+      dedupeBtn.addEventListener('click', () => {
+        const lines = input.value.split('\n');
+        const unique = Array.from(new Set(lines));
+        input.value = unique.join('\n');
+        updateStats(input.value);
+      });
+    }
+
+    const sortAzBtn = document.getElementById('sort-az-btn');
+    if (sortAzBtn && input) {
+      sortAzBtn.addEventListener('click', () => {
+        const lines = input.value.split('\n');
+        lines.sort((a, b) => a.localeCompare(b));
+        input.value = lines.join('\n');
+      });
+    }
+
+    const trimLinesBtn = document.getElementById('trim-lines-btn');
+    if (trimLinesBtn && input) {
+      trimLinesBtn.addEventListener('click', () => {
+        const lines = input.value.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+        input.value = lines.join('\n');
+      });
+    }
+
+    // Lorem Ipsum Generator
+    const loremBtn = document.getElementById('lorem-generate-btn');
+    const loremCount = document.getElementById('lorem-count') as HTMLInputElement | null;
+    const loremOutput = document.getElementById('text-output') as HTMLTextAreaElement | null;
+    const LOREM_WORDS = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum'.split(' ');
+
+    function generateLorem(paragraphs = 3): string {
+      const paras: string[] = [];
+      for (let p = 0; p < paragraphs; p++) {
+        const sentences: string[] = [];
+        const sentenceCount = 4 + Math.floor(Math.random() * 4);
+        for (let s = 0; s < sentenceCount; s++) {
+          const wordCount = 8 + Math.floor(Math.random() * 10);
+          const words: string[] = [];
+          for (let w = 0; w < wordCount; w++) {
+            words.push(LOREM_WORDS[Math.floor(Math.random() * LOREM_WORDS.length)]);
+          }
+          const sentence = words.join(' ');
+          sentences.push(sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.');
+        }
+        paras.push(sentences.join(' '));
+      }
+      return paras.join('\n\n');
+    }
+
+    if (loremBtn && loremOutput) {
+      loremBtn.addEventListener('click', () => {
+        const count = loremCount ? parseInt(loremCount.value, 10) || 3 : 3;
+        loremOutput.value = generateLorem(Math.min(20, Math.max(1, count)));
+      });
+      // Initial generation
+      loremOutput.value = generateLorem(3);
+    }
+
+    // Diff Match Patch handler
+    const diffBtn = document.getElementById('run-diff-btn');
+    const diffOrig = document.getElementById('diff-text-original') as HTMLTextAreaElement | null;
+    const diffMod = document.getElementById('diff-text-modified') as HTMLTextAreaElement | null;
+    const diffResult = document.getElementById('diff-result-view');
+
+    if (diffBtn && diffOrig && diffMod && diffResult) {
+      diffBtn.addEventListener('click', () => {
+        const dmp = new DiffMatchPatch();
+        const diffs = dmp.diff_main(diffOrig.value, diffMod.value);
+        dmp.diff_cleanupSemantic(diffs);
+
+        diffResult.innerHTML = '';
+        if (diffs.length === 0 || (diffs.length === 1 && diffs[0][0] === 0)) {
+          diffResult.innerHTML = '<span class="text-emerald-600 font-semibold">âœ“ Both texts are identical.</span>';
+          return;
+        }
+
+        diffs.forEach(([op, data]) => {
+          const span = document.createElement('span');
+          span.textContent = data;
+          if (op === 1) {
+            span.className = 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 rounded px-0.5';
+          } else if (op === -1) {
+            span.className = 'bg-red-100 text-red-800 dark:bg-red-950/80 dark:text-red-300 line-through rounded px-0.5';
+          }
+          diffResult.appendChild(span);
+        });
+      });
+    }
+  }
+</script>
+

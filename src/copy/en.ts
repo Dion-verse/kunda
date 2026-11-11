@@ -14,13 +14,13 @@ export const en = {
   site: {
     /** Default `<meta name="description">` when a page sets none. */
     description:
-      'ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs. Start exploring and contact our sales team for superior quality and reliability.',
+      'Kunda brings useful digital products and ideas together in one connected ecosystem: software applications, practical online tools, learning resources, and guides. One home. Many useful possibilities.',
     /** schema.org `WebSite.description` in every page's `isPartOf`. */
     descriptionShort:
-      'ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.',
-    ogTitle: 'ScrewFast: Hardware Tools & Construction Services',
+      'A home for useful digital things. Software, tools, knowledge, and digital resources.',
+    ogTitle: 'KUNDA — A home for useful digital things',
     ogDescription:
-      "Equip your projects with ScrewFast's top-quality hardware tools and expert construction services. Trusted by industry leaders, ScrewFast offers simplicity, affordability, and reliability. Experience the difference with user-centric design and cutting-edge tools. Start exploring now!",
+      "Kunda is an independent digital product company building a connected ecosystem of software, online tools, knowledge and resources. One home. Many useful possibilities.",
   },
 
   layout: {
@@ -37,8 +37,11 @@ export const en = {
     labels: {
       home: 'Home',
       products: 'Products',
+      'micro-saas': 'Micro-SaaS',
+      tools: 'Tools',
+      blog: 'Journal',
+      resources: 'Resources',
       services: 'Services',
-      blog: 'Blog',
       contact: 'Contact',
     },
     footer: {
@@ -49,10 +52,12 @@ export const en = {
       },
       links: {
         documentation: 'Documentation',
-        tools: 'Tools & Equipment',
-        services: 'Construction Services',
-        about: 'About us',
-        blog: 'Blog',
+        tools: 'Free Tools',
+        products: 'Software & Apps',
+        resources: 'Resources & Downloads',
+        services: 'Services',
+        about: 'About Kunda',
+        blog: 'Journal & Insights',
         careers: 'Careers',
         customers: 'Customers',
       },
@@ -70,7 +75,7 @@ export const en = {
         guides: {
           title: 'Explore Advice and Explanations',
           description:
-            "Dive deep into helpful guides and explanations for all of ScrewFast's features",
+            "Dive deep into helpful guides and explanations for all of KUNDA's products and tools",
         },
         integrations: {
           title: 'Discover Integrations',
@@ -79,27 +84,27 @@ export const en = {
         },
         experts: {
           title: 'Expert Services',
-          description: "Go beyond tools with ScrewFast's expert services",
+          description: "Go beyond tools with KUNDA's expert digital services",
         },
         tools: {
           title: 'Cutting-Edge Tools',
           description:
-            "Build Smarter, Faster. Experience next-level efficiency with ScrewFast's cutting-edge construction tools",
+            "Build Smarter, Faster. Discover KUNDA's growing suite of digital tools and utilities",
         },
         plans: {
           title: 'Simple Plans',
           description:
-            "Boost your efficiency with ScrewFast's straightforward, value-driven plans",
+            "Boost your efficiency with KUNDA's straightforward, value-driven digital plans",
         },
         community: {
           title: 'Community Forum',
-          description: 'Learn, share, and connect with other ScrewFast users',
+          description: 'Learn, share, and connect with other KUNDA users',
         },
       },
       successStories: 'Success Stories',
       successStory: {
         description:
-          'See how ScrewFast has empowered businesses of all sizes to achieve outstanding results.',
+          'See how KUNDA has empowered builders and creators to work smarter and ship faster.',
         imageAlt: 'Portrait of a smiling person',
       },
       learnMore: 'Learn more',
@@ -179,7 +184,7 @@ export const en = {
   },
 
   products: {
-    ogSection: 'Hardware Tools',
+    ogSection: 'Products',
     tabs: 'Tabs',
   },
 
@@ -193,18 +198,18 @@ export const en = {
   },
 
   home: {
-    banner: 'Explore ScrewFast on GitHub',
+    banner: 'Welcome to KUNDA — Discover Our Ecosystem',
     hero: {
       title:
-        'Equip Your Projects with <span class="text-yellow-500 dark:text-yellow-400">ScrewFast</span>',
+        'A home for <span class="text-orange-500 dark:text-orange-400">useful digital things</span>',
       subTitle:
-        'Top-quality hardware tools and expert construction services for every project need.',
-      primaryBtn: 'Start Exploring',
-      secondaryBtn: 'Contact Sales Team',
+        'Software, tools, resources and ideas designed to help you work smarter, create more and solve everyday problems.',
+      primaryBtn: 'Explore Products',
+      secondaryBtn: 'Discover Free Tools',
       rating: '<span class="font-bold">4.8</span> / 5',
       reviews: 'From Over <span class="font-bold">12.8k</span> Reviews',
       imageAlt:
-        'Stack of ScrewFast product boxes containing assorted hardware tools',
+        'Abstract geometric shapes representing the KUNDA digital ecosystem',
     },
     clients: {
       title: 'Trusted by Industry Leaders',
@@ -213,64 +218,64 @@ export const en = {
     featuresGeneral: {
       title: 'Meeting Industry Demands',
       subTitle:
-        "At ScrewFast, we tackle the unique challenges encountered in the hardware and construction sectors. From cutting-edge tools to expert services, we're dedicated to helping you overcome obstacles and achieve your goals.",
-      imageAlt: 'ScrewFast products in floating boxes',
+        "At KUNDA, we build practical digital tools, resources and software for people who make things online. Whether you're a developer, designer, or founder — we're here to help you work smarter.",
+      imageAlt: 'KUNDA product ecosystem diagram',
     },
     featuresNavs: {
       title:
-        'Customize <span class="text-yellow-500 dark:text-yellow-400">ScrewFast</span>\'s offerings to perfectly suit your hardware and construction needs.',
+        'Explore <span class="text-orange-500 dark:text-orange-400">KUNDA</span>\'s ecosystem — tools, resources and software built for digital makers.',
       tabs: {
         tools: {
           heading: 'Cutting-Edge Tools',
           content:
-            "Empower your projects with ScrewFast's cutting-edge tools. Experience enhanced efficiency in construction management with our sophisticated automated solutions.",
-          alt: 'Yellow and black heavy equipment on brown grass field',
+            "Empower your work with KUNDA's free digital tools. Instant access to JSON formatting, password analysis, QR generation, and more — all client-side, all free.",
+          alt: 'Screenshot of KUNDA free tools interface',
         },
         dashboard: {
           heading: 'Intuitive Dashboards',
           content:
-            "Navigate with ease using ScrewFast's intuitive dashboards. Set up and oversee your projects seamlessly, with user-friendly interfaces designed for quick and effective workflow management.",
+            "Navigate your KUNDA dashboard with ease. Manage subscriptions, track usage, and access all your digital products from one central workspace.",
           alt: 'A screenshot or graphic representation of the intuitive dashboard',
         },
         features: {
           heading: 'Robust Features',
           content:
-            "Minimize complexity, maximize productivity. ScrewFast's robust features are engineered to streamline your construction process, delivering results that stand out for their excellence.",
-          alt: 'Gray metal building frame near tower crane during daytime',
+            "Minimize complexity, maximize productivity. KUNDA's ecosystem is designed to remove friction from your digital workflow — from idea to launch.",
+          alt: 'Screenshot of a KUNDA product features overview',
         },
       },
     },
     testimonials: {
-      title: 'Fast-Track Your Projects',
+      title: 'Loved by Digital Makers',
       subTitle:
-        'At ScrewFast, we ensure a swift start with instant account setup. Experience the speed of construction redefined.',
+        'At KUNDA, we design for speed and simplicity. Set up in seconds, not hours.',
       quotes: [
         {
           content:
-            'ScrewFast dramatically boosted our project efficiency. Setup was instant, and their rapid response times are phenomenal. Truly a game-changer in hardware and construction support!',
-          author: 'Samantha Ruiz',
-          role: 'Chief Operating Officer | ConstructIt Inc.',
+            'KUNDA\'s free tools have become a daily staple for our team. The JSON Formatter alone saves us hours each week. Clean, fast, no nonsense.',
+          author: 'Maya Chen',
+          role: 'Lead Developer | Stackbloom',
         },
       ],
       statistics: [
         {
           count: '70k+',
           description:
-            'customers equipped – from DIY to major construction firms',
+            'developers, designers and founders using KUNDA tools monthly',
         },
         {
           count: '35%',
           description:
-            'uptick in project efficiency with ScrewFast tools and services',
+            'faster workflow reported by teams using KUNDA free tools',
         },
         {
           count: '15.3%',
           description:
-            'reduction in maintenance costs reported by long-term clients',
+            'of KUNDA tools require zero sign-up to use',
         },
         {
           count: '2x',
-          description: 'quicker assembly using innovative fastening solutions',
+          description: 'more resources added each quarter to the KUNDA library',
         },
       ],
     },
@@ -278,78 +283,78 @@ export const en = {
     heroAlt: {
       title: "Let's Build Together",
       subTitle:
-        'ScrewFast is an open-source template, meticulously crafted with Astro, Tailwind CSS, and Preline UI frameworks.',
-      btn: 'Continue with Github',
+        'KUNDA is built with Astro, Tailwind CSS, and deployed on Cloudflare. Explore the ecosystem and find your next useful tool.',
+      btn: 'Explore KUNDA on GitHub',
     },
   },
 
   services: {
     title: 'Services',
     metaDescription:
-      'Uniting expertise with your vision, ScrewFast provides exceptional service and comprehensive solutions in the hardware and construction industry, from consultation to project completion.',
-    ogTitle: 'Expert Consultation Services | ScrewFast',
+      'KUNDA provides expert digital consulting, product strategy and technical services for founders and teams building digital products.',
+    ogTitle: 'Expert Digital Services | KUNDA',
     intro: {
       title: 'Uniting Expertise with Your Vision',
       subTitle:
-        'At ScrewFast, we take pride in providing comprehensive solutions and exceptional service in the hardware and construction industry. Our experienced team is dedicated to supporting your project from inception to completion with a range of specialized services.',
+        'At KUNDA, we provide comprehensive digital solutions and expert guidance for builders of digital products. Our experienced team is dedicated to supporting your project from concept to launch with a range of specialized services.',
       cta: 'Schedule a Consultation',
     },
     articles: {
       guidance: {
         title: 'Delivering Expert Guidance',
         subTitle:
-          'Embarking on a construction project can be overwhelming. With our professional consultation services, we guide you through every stage, ensuring you make informed decisions. Whether you are a DIY enthusiast or a skilled contractor, our experts are on hand to offer tailored advice on product selection, project scope, and compliance with local regulations.',
+          'Launching a digital product can be overwhelming. With our professional consultation services, we guide you through every stage — from product definition and technical architecture to go-to-market strategy. Our experts provide tailored advice on tool selection, scope definition, and best practices.',
         imageAlts: [
-          'Blueprints and digital tablet with construction plans.',
+          'Digital wireframes and product architecture diagrams',
           'Person working in the office',
         ],
       },
       craftsmanship: {
         title: 'Transforming Designs into Reality',
         subTitle:
-          'Our skilled craftsmen bring precision and excellence to every construction project. From minor installations to substantial structural work, ScrewFast offers reliable construction services to turn your plans into tangible outcomes. We ensure the highest standards of safety and workmanship, utilizing top-quality tools and materials from our extensive inventory.',
-        imageAlts: ['Construction site before and after'],
+          'Our skilled engineers and designers bring precision and care to every digital project. From landing pages to full-stack applications, KUNDA delivers polished digital products that meet the highest standards of performance, accessibility and security.',
+        imageAlts: ['Digital product concept and finished user interface'],
         cta: 'Learn More',
       },
       oversight: {
         title: 'Navigating Projects with Professional Oversight',
         subTitle:
-          'Effective project management is at the heart of any successful build. ScrewFast provides thorough planning and robust management services that keep your project on time and within budget. Let us handle the complexities of workflow coordination, resource allocation, and stakeholder communication while you focus on your vision.',
+          'Effective project management is at the heart of any successful digital launch. KUNDA provides thorough planning and delivery management that keeps your project on time and within budget. We handle workflow coordination, technical oversight, and stakeholder communication while you focus on your vision.',
         imageAlts: [
-          'Construction workers orchestrating a project',
-          'Aerial view of managed construction',
+          'Product team collaborating in modern software workspace',
+          'Digital infrastructure deployment monitor',
         ],
       },
       maintenance: {
         title: 'Ensuring Long-lasting Performance',
         subTitle:
-          "Our commitment to your project doesn't end at completion. ScrewFast offers ongoing maintenance and support services to ensure your construction's longevity and performance. From regular check-ups to emergency assistance, our responsive team is there to provide seamless support.",
+          "Our commitment to your project doesn't end at launch. KUNDA offers ongoing maintenance and support services to ensure your digital product's longevity and performance. From routine updates to incident response, our responsive team is there to provide seamless support.",
         imageAlts: [
-          'Man in orange and black vest wearing white helmet holding yellow and black power tool',
+          'Developer testing client-side web application in browser',
         ],
       },
       bespoke: {
         title: 'Crafting Bespoke Strategies for Unique Challenges',
         subTitle:
-          'For our larger enterprise clients, ScrewFast offers custom solutions designed to meet specific industry challenges. By understanding your unique needs, we engineer tailored strategies aimed at optimizing your operations, enhancing efficiency, and driving your business forward.',
+          'For our larger clients, KUNDA offers custom digital solutions designed to meet specific business challenges. By understanding your unique needs, we engineer tailored strategies aimed at optimizing your operations, enhancing efficiency, and driving your business forward.',
         imageAlts: [
-          'In progress building structure',
-          'Brown and gray building under construction',
+          'Software application architecture in development',
+          'Cloud infrastructure console and metrics view',
         ],
         cta: 'Read more',
       },
     },
     stats: {
-      title: 'By the Numbers',
+      title: 'Ecosystem Architecture',
       subTitle:
-        'Our commitment to quality and reliability is evident in every project we undertake. At ScrewFast, we are dedicated to delivering industry-leading services that ensure your construction projects are built to last.',
-      mainStatTitle: '96%',
+        'KUNDA products run on high-performance cloud infrastructure designed for maximum uptime and minimal footprint.',
+      mainStatTitle: '100%',
       mainStatSubTitle:
-        'of our clients rate their experience with ScrewFast as exceptional',
+        'Client-side privacy on our flagship developer utilities',
       stats: [
-        { stat: '99.8%', description: 'project completion rate' },
-        { stat: '5,000+', description: 'successful installations' },
-        { stat: '85%', description: 'client growth year-over-year' },
+        { stat: '<50ms', description: 'Global edge response latency' },
+        { stat: '0', description: 'Third-party tracking scripts' },
+        { stat: '99.9%', description: 'Serverless platform uptime' },
       ],
     },
   },
@@ -358,7 +363,7 @@ export const en = {
     title: 'Contact',
     metaDescription:
       "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.",
-    ogTitle: 'Contact Us | ScrewFast',
+    ogTitle: 'Contact KUNDA | Digital Product Ecosystem',
     heading: 'Contact us',
     subTitle:
       "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.",
@@ -377,7 +382,7 @@ export const en = {
     faqContent: 'Explore our FAQ for quick, clear answers to common queries.',
     faqLink: 'Visit FAQ',
     officeHeading: 'Visit our office',
-    officeContent: 'UK ScrewFast',
+    officeContent: 'KUNDA Digital Headquarters',
     emailHeading: 'Contact us by email',
     emailContent: 'Prefer the written word? Drop us an email at',
   },
@@ -385,14 +390,14 @@ export const en = {
   blogIndex: {
     title: 'Blog',
     metaDescription:
-      "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts.",
-    ogTitle: 'Construction Industry Blog | ScrewFast',
-    heading: 'Your Gateway to Construction Excellence',
+      "Stay up-to-date with software engineering, micro-SaaS architecture, and web tools from the KUNDA team.",
+    ogTitle: 'Journal & Insights | KUNDA',
+    heading: 'Notes on Software, Tools, and Digital Products',
     subTitle:
-      'Explore the latest news, tips, and insights from ScrewFast to enhance your construction projects. From product spotlights to project management strategies, our blog is your go-to resource for all things hardware and construction.',
+      'Practical essays, architecture guides, and technical tutorials for founders and developers building useful digital things.',
     insightsHeading: 'Insights',
     insightsSubTitle:
-      "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts. ",
+      'Perspectives on software sustainability, browser-first tools, and lightweight cloud architecture.',
     noPosts: 'No blog posts yet. Check back soon.',
     noInsights: 'No insights yet. Check back soon.',
   },
@@ -400,46 +405,43 @@ export const en = {
   productsIndex: {
     title: 'Products',
     metaDescription:
-      'Explore the durability and precision of ScrewFast tools, designed for both professionals and enthusiasts.',
-    ogTitle: 'Hardware Tools | ScrewFast',
-    heading: 'Products',
+      'Discover KUNDA software applications, micro-SaaS utilities, and developer tools built for speed and simplicity.',
+    ogTitle: 'Software & Micro-SaaS Products | KUNDA',
+    heading: 'Products & Micro-SaaS',
     subTitle:
-      'Explore the durability and precision of ScrewFast tools, designed for both professionals and enthusiasts. Each of our products is crafted with precision and built to last, ensuring you have the right tool for every job.',
+      'Focused software products engineered to eliminate operational friction without enterprise complexity. Built with modern web standards and lightweight cloud infrastructure.',
     customerStories: 'Customer Stories',
     testimonials: {
-      title: 'What Our Customers Say',
+      title: 'Built for Builders',
       quotes: [
         {
           content:
-            ' "Since switching to ScrewFast\'s hardware tools, the efficiency on our construction sites has skyrocketed. The durability of the hex bolts and precision of the machine screws are simply unmatched. It\'s refreshing to work with a company that truly understands the daily demands of the industry." ',
-          author: 'Jason Clark',
-          role: 'Site Foreman | TopBuild',
+            'KUNDA tools and resources have removed weeks of boilerplate from our product development cycle. Clean, focused, and immediately useful.',
+          author: 'Alex Morgan',
           avatarAlt: 'Image Description',
         },
         {
           content:
-            ' "As an interior designer, I\'m always looking for high-quality materials and tools that help bring my visions to life. ScrewFast\'s mixed screws assortment has been a game-changer for my projects, providing the perfect blend of quality and variety. The outstanding customer support was just the cherry on top!" ',
-          author: 'Maria Gonzalez',
-          role: 'Interior Designer | Creative Spaces',
+            'Having truly client-side tools like the JSON Formatter and Password Analyzer means our engineering team can safely handle data without compliance anxiety.',
+          author: 'Elena Rostova',
           avatarAlt: 'Image Description',
         },
         {
           content:
-            " \"I've been a professional carpenter for over 15 years, and I can sincerely say that ScrewFast's tap bolts and nuts are some of the best I've used. They grip like no other, and I have full confidence in every joint and fixture. Plus, the service is impeccable – they truly care about my project's success.\" ",
-          author: 'Richard Kim',
-          role: 'Master Carpenter | WoodWright',
+            'The Micro-SaaS directory showcases exactly what indie software should look like: clean, fast, and solving real operational headaches.',
+          author: 'Marcus Vance',
           avatarAlt: 'Image Description',
         },
       ],
     },
     stats: {
-      title: 'Why Choose ScrewFast?',
+      title: 'Why KUNDA Products?',
       subTitle:
-        "Transform your ideas into tangible results with ScrewFast tools. Whether you're starting with a sketch on a napkin or diving into a comprehensive construction project, our tools are engineered to help you build with confidence.",
+        'Every application in our ecosystem is designed with strict principles: zero unnecessary dependencies, deterministic execution, and respectful data privacy.',
       benefits: [
-        'Robust and reliable tools for long-lasting performance.',
-        'Innovative solutions tailored to modern construction needs.',
-        "Customer support dedicated to your project's success.",
+        'Fast, lightweight serverless architecture deployed at the global edge.',
+        'Browser-first privacy protecting sensitive user data.',
+        'Honest pricing with generous free tiers for developers and small teams.',
       ],
     },
   },

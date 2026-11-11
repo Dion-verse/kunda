@@ -9,7 +9,7 @@ const { title, testimonials } = Astro.props;
 interface Testimonial {
   content: string;
   author: string;
-  role: string;
+  role?: string;
   avatarSrc: string;
   avatarAlt: string;
 }
@@ -55,9 +55,6 @@ interface Props {
               <div class="ms-3 grow">
                 <p class="text-sm font-bold text-neutral-800 sm:text-base dark:text-neutral-200">
                   {testimonial.author}
-                </p>
-                <p class="text-xs text-neutral-600 dark:text-neutral-400">
-                  {testimonial.role}
                 </p>
               </div>
             </div>

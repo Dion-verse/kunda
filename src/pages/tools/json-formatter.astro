@@ -1,0 +1,186 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+---
+
+<MainLayout
+  title="JSON Formatter & Validator | KUNDA Free Tools"
+  description="Prettify, validate, and minify your JSON data instantly in your browser with syntax error detection and one-click copy."
+  section="Tools"
+>
+  <div class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 2xl:max-w-full">
+    {/* Breadcrumb & Navigation */}
+    <div class="mb-6 flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
+      <a href="/tools" class="hover:text-orange-600 transition-colors">Tools</a>
+      <span>/</span>
+      <span class="text-neutral-800 dark:text-neutral-200 font-medium">JSON Formatter</span>
+    </div>
+
+    {/* Tool Header */}
+    <div class="mb-8">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl font-extrabold tracking-tight text-neutral-900 md:text-3xl dark:text-neutral-100">
+            JSON Formatter & Validator
+          </h1>
+          <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+            Clean, validate, and compress JSON payloads. Processed locally in your browser.
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          100% Client-Side Privacy
+        </span>
+      </div>
+    </div>
+
+    {/* Controls Bar */}
+    <div class="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-3 dark:border-neutral-800 dark:bg-neutral-900/50">
+      <div class="flex flex-wrap items-center gap-2">
+        <button
+          id="btn-format-2"
+          type="button"
+          class="rounded-lg bg-orange-600 px-3.5 py-2 text-xs font-semibold text-white shadow-xs hover:bg-orange-700 transition-colors"
+        >
+          Format (2 Spaces)
+        </button>
+        <button
+          id="btn-format-4"
+          type="button"
+          class="rounded-lg border border-neutral-300 bg-white px-3.5 py-2 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+        >
+          Format (4 Spaces)
+        </button>
+        <button
+          id="btn-minify"
+          type="button"
+          class="rounded-lg border border-neutral-300 bg-white px-3.5 py-2 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+        >
+          Minify
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button
+          id="btn-copy"
+          type="button"
+          class="rounded-lg border border-neutral-300 bg-white px-3.5 py-2 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+        >
+          Copy Output
+        </button>
+        <button
+          id="btn-clear"
+          type="button"
+          class="rounded-lg border border-red-200 bg-red-50 px-3.5 py-2 text-xs font-semibold text-red-700 hover:bg-red-100 transition-colors dark:border-red-900/50 dark:bg-red-950/30 dark:text-red-400"
+        >
+          Clear
+        </button>
+      </div>
+    </div>
+
+    {/* Validation Status Notification */}
+    <div id="status-bar" class="hidden mb-4 rounded-lg p-3 text-sm font-medium transition-all"></div>
+
+    {/* Editor Grids */}
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      {/* Input Panel */}
+      <div class="flex flex-col rounded-2xl border border-neutral-200 bg-white shadow-xs dark:border-neutral-800 dark:bg-neutral-900">
+        <div class="flex items-center justify-between border-b border-neutral-200 px-4 py-2.5 dark:border-neutral-800">
+          <span class="text-xs font-semibold text-neutral-700 dark:text-neutral-300">Raw Input JSON</span>
+          <span id="input-stats" class="text-xs text-neutral-500">0 chars</span>
+        </div>
+        <textarea
+          id="json-input"
+          rows="18"
+          placeholder='Paste your JSON here (e.g. {"name": "Kunda", "tools": ["formatter", "qr"]})'
+          class="w-full resize-y rounded-b-2xl border-0 p-4 font-mono text-xs leading-relaxed text-neutral-900 focus:ring-2 focus:ring-orange-500 dark:bg-neutral-900 dark:text-neutral-100"
+        ></textarea>
+      </div>
+
+      {/* Output Panel */}
+      <div class="flex flex-col rounded-2xl border border-neutral-200 bg-white shadow-xs dark:border-neutral-800 dark:bg-neutral-900">
+        <div class="flex items-center justify-between border-b border-neutral-200 px-4 py-2.5 dark:border-neutral-800">
+          <span class="text-xs font-semibold text-neutral-700 dark:text-neutral-300">Formatted Output</span>
+          <span id="output-stats" class="text-xs text-neutral-500">0 chars</span>
+        </div>
+        <textarea
+          id="json-output"
+          readonly
+          rows="18"
+          placeholder="Formatted JSON will appear here..."
+          class="w-full resize-y rounded-b-2xl border-0 bg-neutral-50 p-4 font-mono text-xs leading-relaxed text-neutral-900 focus:ring-0 dark:bg-neutral-950 dark:text-neutral-100"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+
+  <script is:inline>
+    const input = document.getElementById('json-input');
+    const output = document.getElementById('json-output');
+    const statusBar = document.getElementById('status-bar');
+    const inputStats = document.getElementById('input-stats');
+    const outputStats = document.getElementById('output-stats');
+
+    function updateStats() {
+      inputStats.textContent = `${input.value.length} chars`;
+      outputStats.textContent = `${output.value.length} chars`;
+    }
+
+    function showStatus(message, isError) {
+      statusBar.classList.remove('hidden', 'bg-red-50', 'text-red-700', 'dark:bg-red-950/40', 'dark:text-red-400', 'bg-emerald-50', 'text-emerald-700', 'dark:bg-emerald-950/40', 'dark:text-emerald-400');
+      if (isError) {
+        statusBar.classList.add('bg-red-50', 'text-red-700', 'dark:bg-red-950/40', 'dark:text-red-400');
+      } else {
+        statusBar.classList.add('bg-emerald-50', 'text-emerald-700', 'dark:bg-emerald-950/40', 'dark:text-emerald-400');
+      }
+      statusBar.textContent = message;
+    }
+
+    function processJSON(spaces) {
+      const raw = input.value.trim();
+      if (!raw) {
+        output.value = '';
+        statusBar.classList.add('hidden');
+        updateStats();
+        return;
+      }
+
+      try {
+        const parsed = JSON.parse(raw);
+        output.value = JSON.stringify(parsed, null, spaces);
+        showStatus('Valid JSON formatted successfully.', false);
+      } catch (err) {
+        output.value = '';
+        showStatus(`Invalid JSON: ${err.message}`, true);
+      }
+      updateStats();
+    }
+
+    document.getElementById('btn-format-2')?.addEventListener('click', () => processJSON(2));
+    document.getElementById('btn-format-4')?.addEventListener('click', () => processJSON(4));
+    document.getElementById('btn-minify')?.addEventListener('click', () => processJSON(0));
+
+    document.getElementById('btn-clear')?.addEventListener('click', () => {
+      input.value = '';
+      output.value = '';
+      statusBar.classList.add('hidden');
+      updateStats();
+    });
+
+    document.getElementById('btn-copy')?.addEventListener('click', async () => {
+      if (!output.value) return;
+      await navigator.clipboard.writeText(output.value);
+      const btn = document.getElementById('btn-copy');
+      const originalText = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.classList.add('text-emerald-600');
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.classList.remove('text-emerald-600');
+      }, 1500);
+    });
+
+    input?.addEventListener('input', updateStats);
+  </script>
+</MainLayout>
+

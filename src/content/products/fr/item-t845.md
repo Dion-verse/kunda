@@ -1,55 +1,48 @@
 ---
-title: 'SF-TB T845'
-description: 'Vis à machine'
+title: 'KUNDA Developer Utilities'
+description: 'Free, Client-Side Developer & Creator Web Tools'
 main:
-  id: 1
+  id: 4
   content: |
-    Découvrez le SF-TB T845 – votre solution de prédilection pour la fixation de précision dans les machines et équipements. Cet ensemble complet de vis à machine est méticuleusement conçu pour répondre aux exigences strictes des applications industrielles, garantissant une fixation sécurisée et fiable.
-  imgCard: '@/images/product-image-1.avif'
-  imgMain: '@/images/product-image-main-1.avif'
-  imgAlt: 'Maquettes de boîtes de vis à machine'
+    A cohesive suite of fast, lightweight online utilities engineered for privacy. Format JSON payloads, analyze password cryptographic entropy, and generate customizable QR codes directly in your browser with zero network transmission.
+  imgCard: '@/images/product-image-4.avif'
+  imgMain: '@/images/product-image-main-4.avif'
+  imgAlt: 'KUNDA Developer Utilities tool suite'
 tabs:
   - id: 'tabs-with-card-item-1'
     dataTab: '#tabs-with-card-1'
-    title: 'Description'
+    title: 'Included Tools'
   - id: 'tabs-with-card-item-2'
     dataTab: '#tabs-with-card-2'
-    title: 'Spécifications'
-  - id: 'tabs-with-card-item-3'
-    dataTab: '#tabs-with-card-3'
-    title: 'Plans'
+    title: 'Privacy Architecture'
 longDescription:
-  title: 'Solutions de fixation de précision'
-  subTitle: |
-    Les vis à machine SF-TB T845 offrent une précision et une fiabilité inégalées pour les applications industrielles, garantissant un fonctionnement fluide et une longue durée de vie pour vos machines et équipements.
-  btnTitle: 'Contactez le service commercial pour en savoir plus'
-  btnURL: '#'
+  title: 'Tools That Respect Your Data and Never Send It to a Cloud Server'
+  subTitle: 'Engineered entirely with WebCrypto and client-side processing for instant execution without latency.'
+  btnTitle: 'Open Free Tools'
+  btnURL: '/tools'
 descriptionList:
-  - title: 'Durabilité'
-    subTitle: 'Fabriquées à partir de matériaux de haute qualité, ces vis à machine sont conçues pour résister aux rigueurs des environnements industriels.'
-  - title: 'Ingénierie de précision'
-    subTitle: 'Conçues avec des filets coupés avec précision et des spécifications exactes, garantissant un ajustement serré et sécurisé pour chaque application.'
-  - title: 'Polyvalence'
-    subTitle: "Adaptées à une large gamme de machines et d'équipements, offrant des solutions de fixation polyvalentes pour divers besoins industriels."
+  - title: 'JSON Formatter & Validator'
+    subTitle: 'Clean, validate, beautify, and minify complex JSON files with syntax validation and instant clipboard copy.'
+  - title: 'Password Entropy Analyzer'
+    subTitle: 'Calculate cryptographic bits of entropy, brute-force crack time estimates, and generate secure random passwords.'
+  - title: 'Instant QR Code Generator'
+    subTitle: 'Generate clean QR codes for links and contact cards with custom dimensions and direct image exports.'
 specificationsLeft:
-  - title: 'Composition du matériau'
-    subTitle: 'Construites en acier ou alliage de qualité supérieure pour une résistance et une durabilité exceptionnelles.'
-  - title: 'Finition de surface'
-    subTitle: 'Fini avec un revêtement protecteur pour améliorer la résistance à la corrosion et prolonger la durée de vie.'
-  - title: 'Quantité par ensemble'
-    subTitle: 'Chaque ensemble contient un assortiment complet de vis à machine pour répondre aux divers besoins industriels.'
-  - title: 'Gamme de tailles'
-    subTitle: "Disponible en différentes tailles et longueurs pour s'adapter aux spécifications des machines et équipements."
+  - title: 'Privacy Level'
+    subTitle: '100% Client-Side Processing for JSON & Password tools'
+  - title: 'Cost'
+    subTitle: 'Free Forever with unlimited use'
 specificationsRight:
-  - title: 'Spécifications du filetage'
-    subTitle: 'Des filets conçus avec précision assurent une adhérence optimale et une fiabilité, même dans les environnements à haute vibration.'
-  - title: 'Capacité de charge'
-    subTitle: 'Conçues pour répondre ou dépasser les normes industrielles en matière de capacité de charge, garantissant une opération sûre et fiable.'
-  - title: 'Certifications'
-    subTitle: 'Conformes aux normes et certifications industrielles pertinentes, garantissant qualité et fiabilité.'
-  - title: 'Applications'
-    subTitle: 'Idéal pour une utilisation dans une large gamme de machines industrielles, équipements et assemblages nécessitant une fixation précise et sécurisée.'
+  - title: 'Registration'
+    subTitle: 'No account, sign-in, or tracking required'
+  - title: 'Availability'
+    subTitle: 'Publicly active on kunda.works/tools'
+tableData:
+  - feature: ['Execution Environment', 'Client Web Browser']
+    description:
+      - ['Offline Capable', 'Yes (via Service Worker caching)']
+      - ['Telemetry', 'Zero sensitive payload tracking']
 blueprints:
-  first: '@/images/blueprint-1.avif'
-  second: '@/images/blueprint-2.avif'
+  first: '@/images/product-image-4.avif'
+  second: '@/images/product-image-main-4.avif'
 ---

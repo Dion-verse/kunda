@@ -1,14 +1,14 @@
 import ogImageSrc from '@images/social.png';
 
 export const SITE = {
-  title: 'ScrewFast',
-  tagline: 'Top-quality Hardware Tools',
+  title: 'KUNDA',
+  tagline: 'A home for useful digital things',
   description:
-    'ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs. Start exploring and contact our sales team for superior quality and reliability.',
+    'Kunda brings useful digital products and ideas together in one connected ecosystem: software applications, practical online tools, learning resources, and guides. One home. Many useful possibilities.',
   description_short:
-    'ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.',
-  url: 'https://screwfast.uk',
-  author: 'Emil Gulamov',
+    'A home for useful digital things. Software, tools, knowledge, and digital resources.',
+  url: 'https://kunda.works',
+  author: 'Kunda Works',
 };
 
 // Per-locale titles, descriptions and Open Graph text live in `src/copy/`;

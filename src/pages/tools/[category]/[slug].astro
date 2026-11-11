@@ -1,0 +1,36 @@
+---
+import { TOOLS, type Tool } from '@/data/tools';
+import ToolLayout from '@/components/tools/ToolLayout.astro';
+import TextTool from '@/components/tools/implementations/TextTool.astro';
+import CalculatorTool from '@/components/tools/implementations/CalculatorTool.astro';
+import DeveloperTool from '@/components/tools/implementations/DeveloperTool.astro';
+import ImageTool from '@/components/tools/implementations/ImageTool.astro';
+import BusinessTool from '@/components/tools/implementations/BusinessTool.astro';
+import PdfTool from '@/components/tools/implementations/PdfTool.astro';
+
+export function getStaticPaths() {
+  return TOOLS.map(tool => ({
+    params: {
+      category: tool.category,
+      slug: tool.slug,
+    },
+    props: { tool },
+  }));
+}
+
+interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+---
+
+<ToolLayout tool={tool}>
+  {tool.category === 'text' && <TextTool tool={tool} />}
+  {tool.category === 'calculator' && <CalculatorTool tool={tool} />}
+  {tool.category === 'developer' && <DeveloperTool tool={tool} />}
+  {tool.category === 'image' && <ImageTool tool={tool} />}
+  {tool.category === 'business' && <BusinessTool tool={tool} />}
+  {tool.category === 'pdf' && <PdfTool tool={tool} />}
+</ToolLayout>
+

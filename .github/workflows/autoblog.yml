@@ -1,0 +1,105 @@
+name: Automated Gemini Journal Publishing
+
+on:
+  schedule:
+    # Run once daily at 06:00 UTC (script checks 72-hour elapsed threshold)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force generation regardless of 72h elapsed interval'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: autoblog-publishing
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Check 72-Hour Publication Interval
+        id: check_interval
+        run: |
+          python -c '
+          import json, time, os, sys
+          force = "${{ github.event.inputs.force }}" == "true"
+          if force:
+              print("Force flag active. Proceeding.")
+              sys.exit(0)
+
+          state_path = "blog-automation/state.json"
+          if os.path.exists(state_path):
+              with open(state_path) as f:
+                  data = json.load(f)
+              last_run = data.get("last_run_timestamp", 0)
+              elapsed_hours = (time.time() - last_run) / 3600
+              if elapsed_hours < 72:
+                  print(f"Skipping: only {elapsed_hours:.1f} hours elapsed since last post (threshold: 72h).")
+                  sys.exit(10)
+          ' || if [ $? -eq 10 ]; then echo "skip=true" >> $GITHUB_OUTPUT; exit 0; fi
+
+      - name: Generate New Blog Article
+        if: steps.check_interval.outputs.skip != 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: 'gemini-2.5-flash'
+        run: python scripts/generate_post.py
+
+      - name: Validate Generated Article
+        if: steps.check_interval.outputs.skip != 'true'
+        run: python scripts/validate_post.py
+
+      - name: Set up pnpm
+        if: steps.check_interval.outputs.skip != 'true'
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        if: steps.check_interval.outputs.skip != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install Node Dependencies
+        if: steps.check_interval.outputs.skip != 'true'
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Verify Production Astro Build
+        if: steps.check_interval.outputs.skip != 'true'
+        run: pnpm run build
+
+      - name: Commit and Push New Article
+        if: steps.check_interval.outputs.skip != 'true'
+        run: |
+          git config --local user.name "KUNDA Publishing Engine"
+          git config --local user.email "bot@kunda.works"
+          git add src/content/blog/ blog-automation/
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(blog): publish automated journal article [skip ci]"
+            git push origin HEAD:main
+          fi
+

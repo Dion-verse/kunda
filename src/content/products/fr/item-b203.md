@@ -1,55 +1,48 @@
 ---
-title: 'SF-BN B203'
-description: 'Ensemble de boulons à vis et écrous'
+title: 'AssetSnag'
+description: 'Agency Client File Intake & Format Pre-flight Validator'
 main:
-  id: 3
+  id: 2
   content: |
-    Découvrez le SF-BN B203 – votre compagnon fiable pour des fixations de qualité professionnelle. Cet ensemble complet comprend une sélection polyvalente de boulons à vis et d'écrous, méticuleusement conçus pour offrir la tenue la plus solide pour vos projets de construction et d'assemblage.
+    AssetSnag stops the endless email back-and-forth of missing client assets. Branded upload portals automatically validate file dimensions, vector formats, color spaces, and font requirements before allowing the upload to complete.
   imgCard: '@/images/product-image-3.avif'
   imgMain: '@/images/product-image-main-3.avif'
-  imgAlt: "Maquettes de boîtes d'un ensemble de boulons à vis et écrous"
+  imgAlt: 'AssetSnag file validation portal interface'
 tabs:
   - id: 'tabs-with-card-item-1'
     dataTab: '#tabs-with-card-1'
-    title: 'Description'
+    title: 'Overview'
   - id: 'tabs-with-card-item-2'
     dataTab: '#tabs-with-card-2'
-    title: 'Spécifications'
-  - id: 'tabs-with-card-item-3'
-    dataTab: '#tabs-with-card-3'
-    title: 'Plans'
+    title: 'Specifications'
 longDescription:
-  title: 'La force rencontre la précision'
-  subTitle: |
-    L'ensemble de boulons à vis et écrous SF-BN B203 offre une durabilité robuste et une précision pour les professionnels de la construction, garantissant des performances fiables dans chaque application, de l'encadrement de maisons à l'assemblage de machines.
-  btnTitle: 'Contactez le service commercial pour en savoir plus'
-  btnURL: '#'
+  title: 'No More Low-Resolution Logos or Corrupt Files'
+  subTitle: 'Set strict asset requirements for clients and let automated validation do the tedious enforcement.'
+  btnTitle: 'Request Early Access'
+  btnURL: '/contact'
 descriptionList:
-  - title: 'Résistance à la corrosion'
-    subTitle: 'Le revêtement en zinc offre non seulement un aspect poli, mais protège également contre la corrosion, garantissant une longue durée de vie.'
-  - title: 'Sécurité améliorée'
-    subTitle: 'Un ajustement sécurisé se traduit par des structures plus sûres avec un risque réduit de défaillance des composants.'
-  - title: 'Praticité'
-    subTitle: 'Cet ensemble tout-en-un signifie que vous avez la bonne taille sous la main, réduisant les retards de projet et les allers-retours supplémentaires au magasin de bricolage.'
+  - title: 'Format & Dimension Gatekeeper'
+    subTitle: 'Enforce minimum pixel dimensions, exact SVG specifications, and CMYK/RGB profile requirements automatically.'
+  - title: 'White-Label Portals'
+    subTitle: 'Send clients to a beautiful portal carrying your creative agency domain and brand identity.'
+  - title: 'Cloud Storage Sync'
+    subTitle: 'Accepted assets sync instantly to organized client folders in Google Drive, Dropbox, or S3.'
 specificationsLeft:
-  - title: 'Composition du matériau'
-    subTitle: "Fabriqué à partir d'acier de haute qualité, offrant résistance et fiabilité pour des applications exigeantes."
-  - title: 'Finition de surface'
-    subTitle: 'Protégé par un revêtement de zinc pour offrir une résistance accrue à la corrosion et une longévité.'
-  - title: 'Quantité par ensemble'
-    subTitle: "L'ensemble comprend une sélection équilibrée de 25 boulons à vis et 25 écrous assortis."
-  - title: 'Assortiment de tailles'
-    subTitle: 'Comprend une gamme complète de tailles pour répondre à diverses exigences de projet, garantissant compatibilité et polyvalence.'
+  - title: 'Target Audience'
+    subTitle: 'Web design studios, digital branding agencies, marketing teams'
+  - title: 'File Types Handled'
+    subTitle: 'PNG, SVG, AI, EPS, PDF, MP4, WebP, ZIP packages'
 specificationsRight:
-  - title: 'Détails du filetage'
-    subTitle: 'Conçu avec des filets coupés avec précision pour un ajustement sécurisé et une installation facile.'
-  - title: 'Propriétés mécaniques'
-    subTitle: 'Chaque boulon et écrou est conçu pour répondre à des indices de charge spécifiques ou à des normes de résistance, adaptés aux applications structurelles.'
-  - title: 'Normes et certifications'
-    subTitle: 'Conforme aux normes et certifications industrielles pertinentes, garantissant une qualité et une sécurité constantes.'
-  - title: 'Applications adaptées'
-    subTitle: "Idéal pour un large éventail d'utilisations, des environnements de construction aux assemblages mécaniques qui nécessitent des joints solides et sécurisés."
+  - title: 'Validation Rules'
+    subTitle: 'Resolution, aspect ratio, color profile, file size limits'
+  - title: 'Pricing'
+    subTitle: '$39/mo per agency with unlimited client upload portals'
+tableData:
+  - feature: ['Max File Size', '500MB per upload']
+    description:
+      - ['Security', 'Encrypted in transit & at rest']
+      - ['Client Friction', 'Drag-and-drop web UI']
 blueprints:
-  first: '@/images/blueprint-1.avif'
-  second: '@/images/blueprint-2.avif'
+  first: '@/images/product-image-3.avif'
+  second: '@/images/product-image-main-3.avif'
 ---

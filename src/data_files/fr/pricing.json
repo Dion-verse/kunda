@@ -1,38 +1,39 @@
 {
-  "title": "Tarification Simple et Transparente",
-  "subTitle": "Augmentez l'efficacité avec les plans clairs et axés sur la valeur de ScrewFast.",
-  "badge": "Meilleure valeur",
-  "thirdOption": "Solutions Entreprise?",
-  "btnText": "Obtenez un Devis Personnalisé",
-
+  "title": "Simple, Transparent Ecosystem Plans",
+  "subTitle": "Choose the right tier to access KUNDA micro-applications, premium resources, and developer tooling.",
+  "badge": "Community Favorite",
+  "thirdOption": "Custom Digital Solutions?",
+  "btnText": "Get in Touch",
   "starterKit": {
-    "name": "Kit de Démarrage",
-    "description": "Meilleure option pour les projets de bricolage",
-    "price": "49",
-    "cents": ".00",
-    "billingFrequency": "USD / mensuel",
+    "name": "Community & Free Tools",
+    "description": "Complete access to all browser-first utilities, public checklists, and open knowledge resources.",
+    "price": "0",
+    "cents": "",
+    "billingFrequency": "Free Forever",
     "features": [
-      "Outils matériels essentiels",
-      "Accès aux guides et tutoriels",
-      "Support standard"
+      "Access to all 3+ free browser tools",
+      "No account or credit card required",
+      "Standard resource downloads",
+      "Public documentation and guides",
+      "100% client-side privacy protection"
     ],
-    "purchaseBtnTitle": "Obtenez le Kit de Démarrage",
-    "purchaseLink": "#"
+    "purchaseBtnTitle": "Start Using Free Tools",
+    "purchaseLink": "/tools"
   },
-
   "professionalToolbox": {
-    "name": "Boîte à Outils Professionnelle",
-    "description": "Idéale pour les utilisations à grande échelle",
-    "price": "89",
+    "name": "Pro Maker",
+    "description": "Ideal for independent developers, founders, and boutique digital agencies shipping products.",
+    "price": "29",
     "cents": ".00",
-    "billingFrequency": "USD / mensuel",
+    "billingFrequency": "per month",
     "features": [
-      "Sélection d'outils premium",
-      "Support prioritaire",
-      "Contenu et offres exclusifs",
-      "Remises sur les commandes en gros"
+      "Accès prioritaire à tous les outils Micro-SaaS",
+      "Accès anticipé aux versions bêta privées",
+      "Tous les kits d'agence éditables (DOCX, Notion)",
+      "Mises à jour continues et corrections de bugs",
+      "Support direct des fondateurs par e-mail"
     ],
-    "purchaseBtnTitle": "Obtenez la Boîte à Outils Professionnelle",
-    "purchaseLink": "#"
+    "purchaseBtnTitle": "Explore Pro Access",
+    "purchaseLink": "/contact"
   }
 }

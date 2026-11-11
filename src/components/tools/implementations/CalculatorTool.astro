@@ -1,0 +1,578 @@
+---
+import type { Tool } from '@/data/tools';
+
+interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+---
+
+<div class="space-y-6 calculator-tool-container" data-slug={tool.slug}>
+  {/* PERCENTAGE CALCULATOR */}
+  {tool.slug === 'percentage-calculator' && (
+    <div class="space-y-6">
+      <div class="grid gap-6 sm:grid-cols-3">
+        {/* Calc 1: What is X% of Y? */}
+        <div class="rounded-xl border border-neutral-200/80 bg-neutral-50/60 p-4 dark:border-neutral-700/60 dark:bg-neutral-800/40">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-3">1. Find Value: What is X% of Y?</h4>
+          <div class="space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-neutral-500">What is</span>
+              <input type="number" id="pct1-x" value="15" class="w-20 rounded-lg border border-neutral-300 p-2 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+              <span class="text-xs text-neutral-500">% of</span>
+              <input type="number" id="pct1-y" value="250" class="w-24 rounded-lg border border-neutral-300 p-2 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+            </div>
+            <div class="rounded-lg bg-white p-3 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700">
+              <span class="text-xs text-neutral-500">Result:</span>
+              <div id="pct1-res" class="text-2xl font-black text-orange-500">37.5</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Calc 2: X is what % of Y? */}
+        <div class="rounded-xl border border-neutral-200/80 bg-neutral-50/60 p-4 dark:border-neutral-700/60 dark:bg-neutral-800/40">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-3">2. Find Percentage: X of Y</h4>
+          <div class="space-y-3">
+            <div class="flex items-center gap-2">
+              <input type="number" id="pct2-x" value="45" class="w-20 rounded-lg border border-neutral-300 p-2 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+              <span class="text-xs text-neutral-500">is what % of</span>
+              <input type="number" id="pct2-y" value="200" class="w-24 rounded-lg border border-neutral-300 p-2 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+            </div>
+            <div class="rounded-lg bg-white p-3 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700">
+              <span class="text-xs text-neutral-500">Result:</span>
+              <div id="pct2-res" class="text-2xl font-black text-teal-600 dark:text-teal-400">22.5%</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Calc 3: Percentage Change */}
+        <div class="rounded-xl border border-neutral-200/80 bg-neutral-50/60 p-4 dark:border-neutral-700/60 dark:bg-neutral-800/40">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-3">3. % Increase / Decrease</h4>
+          <div class="space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-neutral-500">From</span>
+              <input type="number" id="pct3-x" value="100" class="w-20 rounded-lg border border-neutral-300 p-2 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+              <span class="text-xs text-neutral-500">to</span>
+              <input type="number" id="pct3-y" value="130" class="w-24 rounded-lg border border-neutral-300 p-2 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+            </div>
+            <div class="rounded-lg bg-white p-3 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700">
+              <span class="text-xs text-neutral-500">Change:</span>
+              <div id="pct3-res" class="text-2xl font-black text-emerald-600 dark:text-emerald-400">+30.0%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* AGE CALCULATOR */}
+  {tool.slug === 'age-calculator' && (
+    <div class="max-w-xl mx-auto space-y-6">
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Date of Birth</label>
+          <input type="date" id="age-birthdate" value="1995-06-15" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Target Calculation Date</label>
+          <input type="date" id="age-targetdate" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 rounded-2xl bg-neutral-50 p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 text-center">
+        <div>
+          <span id="age-years" class="block text-3xl font-black text-orange-500">0</span>
+          <span class="text-xs text-neutral-500">Years</span>
+        </div>
+        <div>
+          <span id="age-months" class="block text-3xl font-black text-neutral-800 dark:text-neutral-100">0</span>
+          <span class="text-xs text-neutral-500">Months</span>
+        </div>
+        <div>
+          <span id="age-days" class="block text-3xl font-black text-neutral-800 dark:text-neutral-100">0</span>
+          <span class="text-xs text-neutral-500">Days</span>
+        </div>
+        <div class="sm:col-span-3 pt-3 border-t border-neutral-200 dark:border-neutral-700 mt-2">
+          <p id="age-summary" class="text-xs text-neutral-600 dark:text-neutral-400">Calculating your age breakdown...</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* BMI CALCULATOR */}
+  {tool.slug === 'bmi-calculator' && (
+    <div class="max-w-xl mx-auto space-y-6">
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Weight (kg)</label>
+          <input type="number" id="bmi-weight" value="70" step="0.5" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Height (cm)</label>
+          <input type="number" id="bmi-height" value="175" step="1" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-neutral-50 p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 text-center space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-neutral-500">Your Body Mass Index (BMI)</span>
+        <div id="bmi-score" class="text-4xl font-black text-teal-600 dark:text-teal-400">22.9</div>
+        <div id="bmi-category" class="inline-block rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+          Normal Weight (18.5 - 24.9)
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* LOAN CALCULATOR */}
+  {tool.slug === 'loan-calculator' && (
+    <div class="max-w-2xl mx-auto space-y-6">
+      <div class="grid gap-4 sm:grid-cols-3">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Loan Amount ($)</label>
+          <input type="number" id="loan-amount" value="50000" step="500" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Interest Rate (% APR)</label>
+          <input type="number" id="loan-rate" value="5.5" step="0.1" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Term (Years)</label>
+          <input type="number" id="loan-years" value="5" step="1" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 rounded-2xl bg-neutral-50 p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 text-center">
+        <div>
+          <span class="text-xs text-neutral-500">Monthly Payment</span>
+          <span id="loan-monthly" class="block text-2xl font-black text-orange-500">$955.05</span>
+        </div>
+        <div>
+          <span class="text-xs text-neutral-500">Total Interest</span>
+          <span id="loan-interest" class="block text-2xl font-black text-neutral-800 dark:text-neutral-100">$7,303.00</span>
+        </div>
+        <div>
+          <span class="text-xs text-neutral-500">Total Payment</span>
+          <span id="loan-total" class="block text-2xl font-black text-teal-600 dark:text-teal-400">$57,303.00</span>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* DISCOUNT CALCULATOR */}
+  {tool.slug === 'discount-calculator' && (
+    <div class="max-w-xl mx-auto space-y-6">
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Original Price ($)</label>
+          <input type="number" id="disc-price" value="120" step="1" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Discount (%)</label>
+          <input type="number" id="disc-percent" value="25" step="1" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 rounded-2xl bg-neutral-50 p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 text-center">
+        <div>
+          <span class="text-xs text-neutral-500">You Pay (Final Price)</span>
+          <span id="disc-final" class="block text-3xl font-black text-emerald-600 dark:text-emerald-400">$90.00</span>
+        </div>
+        <div>
+          <span class="text-xs text-neutral-500">You Save</span>
+          <span id="disc-saved" class="block text-3xl font-black text-orange-500">$30.00</span>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* DATE CALCULATOR */}
+  {tool.slug === 'date-calculator' && (
+    <div class="max-w-xl mx-auto space-y-6">
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Start Date</label>
+          <input type="date" id="date-start" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">End Date</label>
+          <input type="date" id="date-end" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-neutral-50 p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 text-center">
+        <span class="text-xs text-neutral-500">Difference in Time</span>
+        <div id="date-diff-days" class="text-4xl font-black text-teal-600 dark:text-teal-400">0 Days</div>
+        <p id="date-diff-weeks" class="mt-2 text-xs text-neutral-600 dark:text-neutral-400">0 weeks and 0 days</p>
+      </div>
+    </div>
+  )}
+
+  {/* CURRENCY CONVERTER */}
+  {tool.slug === 'currency-converter' && (
+    <div class="max-w-xl mx-auto space-y-6">
+      <div class="grid gap-4 sm:grid-cols-3">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">Amount</label>
+          <input type="number" id="curr-amount" value="100" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">From</label>
+          <select id="curr-from" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800">
+            <option value="USD">USD - US Dollar</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="CAD">CAD - Canadian Dollar</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="CHF">CHF - Swiss Franc</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">To</label>
+          <select id="curr-to" class="w-full rounded-xl border border-neutral-300 p-3 text-sm dark:border-neutral-700 dark:bg-neutral-800">
+            <option value="EUR">EUR - Euro</option>
+            <option value="USD">USD - US Dollar</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="CAD">CAD - Canadian Dollar</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="CHF">CHF - Swiss Franc</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-neutral-50 p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 text-center">
+        <span class="text-xs text-neutral-500">Converted Value</span>
+        <div id="curr-result" class="text-3xl font-black text-orange-500">â‚¬92.00</div>
+        <p class="mt-2 text-[11px] text-neutral-500">
+          Source: ECB reference rates (Offline benchmark mode). Timestamp: 2026-11-11.
+        </p>
+      </div>
+    </div>
+  )}
+
+  {/* SCIENTIFIC CALCULATOR */}
+  {tool.slug === 'scientific-calculator' && (
+    <div class="max-w-md mx-auto space-y-4">
+      <input
+        type="text"
+        id="calc-display"
+        readonly
+        value="0"
+        class="w-full rounded-xl border border-neutral-300 bg-neutral-900 p-4 text-right font-mono text-3xl font-bold text-white shadow-inner"
+      />
+      <div class="grid grid-cols-4 gap-2">
+        <button type="button" class="calc-key bg-neutral-200 dark:bg-neutral-700 p-3 rounded-lg font-bold" data-val="C">C</button>
+        <button type="button" class="calc-key bg-neutral-200 dark:bg-neutral-700 p-3 rounded-lg font-bold" data-val="sin">sin</button>
+        <button type="button" class="calc-key bg-neutral-200 dark:bg-neutral-700 p-3 rounded-lg font-bold" data-val="cos">cos</button>
+        <button type="button" class="calc-key bg-orange-500 text-white p-3 rounded-lg font-bold" data-val="/">/</button>
+
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val="7">7</button>
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val="8">8</button>
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val="9">9</button>
+        <button type="button" class="calc-key bg-orange-500 text-white p-3 rounded-lg font-bold" data-val="*">*</button>
+
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val="4">4</button>
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val="5">5</button>
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val="6">6</button>
+        <button type="button" class="calc-key bg-orange-500 text-white p-3 rounded-lg font-bold" data-val="-">-</button>
+
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val="1">1</button>
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val="2">2</button>
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val="3">3</button>
+        <button type="button" class="calc-key bg-orange-500 text-white p-3 rounded-lg font-bold" data-val="+">+</button>
+
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val="0">0</button>
+        <button type="button" class="calc-key bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg font-bold" data-val=".">.</button>
+        <button type="button" class="calc-key bg-neutral-200 dark:bg-neutral-700 p-3 rounded-lg font-bold" data-val="sqrt">âˆš</button>
+        <button type="button" class="calc-key bg-emerald-600 text-white p-3 rounded-lg font-bold" data-val="=">=</button>
+      </div>
+    </div>
+  )}
+</div>
+
+<script>
+  const container = document.querySelector('.calculator-tool-container');
+  if (container) {
+    const slug = container.getAttribute('data-slug');
+
+    // 1. PERCENTAGE
+    if (slug === 'percentage-calculator') {
+      const p1x = document.getElementById('pct1-x') as HTMLInputElement;
+      const p1y = document.getElementById('pct1-y') as HTMLInputElement;
+      const p1res = document.getElementById('pct1-res');
+
+      const p2x = document.getElementById('pct2-x') as HTMLInputElement;
+      const p2y = document.getElementById('pct2-y') as HTMLInputElement;
+      const p2res = document.getElementById('pct2-res');
+
+      const p3x = document.getElementById('pct3-x') as HTMLInputElement;
+      const p3y = document.getElementById('pct3-y') as HTMLInputElement;
+      const p3res = document.getElementById('pct3-res');
+
+      function updatePercentages() {
+        if (p1x && p1y && p1res) {
+          const x = parseFloat(p1x.value) || 0;
+          const y = parseFloat(p1y.value) || 0;
+          p1res.textContent = ((x / 100) * y).toLocaleString(undefined, { maximumFractionDigits: 2 });
+        }
+        if (p2x && p2y && p2res) {
+          const x = parseFloat(p2x.value) || 0;
+          const y = parseFloat(p2y.value) || 1;
+          p2res.textContent = `${((x / y) * 100).toFixed(2)}%`;
+        }
+        if (p3x && p3y && p3res) {
+          const x = parseFloat(p3x.value) || 1;
+          const y = parseFloat(p3y.value) || 0;
+          const diff = ((y - x) / x) * 100;
+          p3res.textContent = `${diff >= 0 ? '+' : ''}${diff.toFixed(2)}%`;
+          p3res.className = `text-2xl font-black ${diff >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'}`;
+        }
+      }
+
+      [p1x, p1y, p2x, p2y, p3x, p3y].forEach(el => el?.addEventListener('input', updatePercentages));
+    }
+
+    // 2. AGE
+    if (slug === 'age-calculator') {
+      const birthEl = document.getElementById('age-birthdate') as HTMLInputElement;
+      const targetEl = document.getElementById('age-targetdate') as HTMLInputElement;
+      const yEl = document.getElementById('age-years');
+      const mEl = document.getElementById('age-months');
+      const dEl = document.getElementById('age-days');
+      const summaryEl = document.getElementById('age-summary');
+
+      if (targetEl) targetEl.valueAsDate = new Date();
+
+      function updateAge() {
+        if (!birthEl?.value) return;
+        const b = new Date(birthEl.value);
+        const t = targetEl?.value ? new Date(targetEl.value) : new Date();
+
+        let years = t.getFullYear() - b.getFullYear();
+        let months = t.getMonth() - b.getMonth();
+        let days = t.getDate() - b.getDate();
+
+        if (days < 0) {
+          months -= 1;
+          const prevMonth = new Date(t.getFullYear(), t.getMonth(), 0);
+          days += prevMonth.getDate();
+        }
+        if (months < 0) {
+          years -= 1;
+          months += 12;
+        }
+
+        if (yEl) yEl.textContent = Math.max(0, years).toString();
+        if (mEl) mEl.textContent = Math.max(0, months).toString();
+        if (dEl) dEl.textContent = Math.max(0, days).toString();
+
+        const diffTime = Math.abs(t.getTime() - b.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if (summaryEl) summaryEl.textContent = `Total lifespan: ${diffDays.toLocaleString()} days lived so far.`;
+      }
+
+      birthEl?.addEventListener('change', updateAge);
+      targetEl?.addEventListener('change', updateAge);
+      updateAge();
+    }
+
+    // 3. BMI
+    if (slug === 'bmi-calculator') {
+      const wEl = document.getElementById('bmi-weight') as HTMLInputElement;
+      const hEl = document.getElementById('bmi-height') as HTMLInputElement;
+      const scoreEl = document.getElementById('bmi-score');
+      const catEl = document.getElementById('bmi-category');
+
+      function updateBmi() {
+        const w = parseFloat(wEl.value) || 0;
+        const h = (parseFloat(hEl.value) || 0) / 100;
+        if (h <= 0) return;
+        const bmi = w / (h * h);
+        if (scoreEl) scoreEl.textContent = bmi.toFixed(1);
+
+        if (catEl) {
+          if (bmi < 18.5) {
+            catEl.textContent = 'Underweight (< 18.5)';
+            catEl.className = 'inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800 dark:bg-blue-950 dark:text-blue-300';
+          } else if (bmi < 25) {
+            catEl.textContent = 'Normal Weight (18.5 - 24.9)';
+            catEl.className = 'inline-block rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300';
+          } else if (bmi < 30) {
+            catEl.textContent = 'Overweight (25 - 29.9)';
+            catEl.className = 'inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800 dark:bg-amber-950 dark:text-amber-300';
+          } else {
+            catEl.textContent = 'Obese (30+)';
+            catEl.className = 'inline-block rounded-full bg-red-100 px-3 py-1 text-xs font-bold text-red-800 dark:bg-red-950 dark:text-red-300';
+          }
+        }
+      }
+
+      wEl?.addEventListener('input', updateBmi);
+      hEl?.addEventListener('input', updateBmi);
+    }
+
+    // 4. LOAN
+    if (slug === 'loan-calculator') {
+      const aEl = document.getElementById('loan-amount') as HTMLInputElement;
+      const rEl = document.getElementById('loan-rate') as HTMLInputElement;
+      const yEl = document.getElementById('loan-years') as HTMLInputElement;
+      const mOut = document.getElementById('loan-monthly');
+      const iOut = document.getElementById('loan-interest');
+      const tOut = document.getElementById('loan-total');
+
+      function updateLoan() {
+        const principal = parseFloat(aEl.value) || 0;
+        const rate = (parseFloat(rEl.value) || 0) / 100 / 12;
+        const months = (parseFloat(yEl.value) || 1) * 12;
+
+        let monthly = 0;
+        if (rate > 0) {
+          monthly = (principal * rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
+        } else {
+          monthly = principal / months;
+        }
+
+        const total = monthly * months;
+        const interest = total - principal;
+
+        if (mOut) mOut.textContent = `$${monthly.toFixed(2)}`;
+        if (iOut) iOut.textContent = `$${interest.toFixed(2)}`;
+        if (tOut) tOut.textContent = `$${total.toFixed(2)}`;
+      }
+
+      [aEl, rEl, yEl].forEach(el => el?.addEventListener('input', updateLoan));
+    }
+
+    // 5. DISCOUNT
+    if (slug === 'discount-calculator') {
+      const pEl = document.getElementById('disc-price') as HTMLInputElement;
+      const dEl = document.getElementById('disc-percent') as HTMLInputElement;
+      const fOut = document.getElementById('disc-final');
+      const sOut = document.getElementById('disc-saved');
+
+      function updateDiscount() {
+        const price = parseFloat(pEl.value) || 0;
+        const disc = parseFloat(dEl.value) || 0;
+        const saved = (price * disc) / 100;
+        const final = price - saved;
+
+        if (fOut) fOut.textContent = `$${final.toFixed(2)}`;
+        if (sOut) sOut.textContent = `$${saved.toFixed(2)}`;
+      }
+
+      pEl?.addEventListener('input', updateDiscount);
+      dEl?.addEventListener('input', updateDiscount);
+    }
+
+    // 6. DATE
+    if (slug === 'date-calculator') {
+      const sEl = document.getElementById('date-start') as HTMLInputElement;
+      const eEl = document.getElementById('date-end') as HTMLInputElement;
+      const daysOut = document.getElementById('date-diff-days');
+      const weeksOut = document.getElementById('date-diff-weeks');
+
+      if (sEl) sEl.valueAsDate = new Date();
+      if (eEl) {
+        const future = new Date();
+        future.setDate(future.getDate() + 30);
+        eEl.valueAsDate = future;
+      }
+
+      function updateDate() {
+        if (!sEl?.value || !eEl?.value) return;
+        const d1 = new Date(sEl.value);
+        const d2 = new Date(eEl.value);
+        const diffTime = Math.abs(d2.getTime() - d1.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const weeks = Math.floor(diffDays / 7);
+        const remDays = diffDays % 7;
+
+        if (daysOut) daysOut.textContent = `${diffDays} Days`;
+        if (weeksOut) weeksOut.textContent = `${weeks} weeks and ${remDays} days`;
+      }
+
+      sEl?.addEventListener('change', updateDate);
+      eEl?.addEventListener('change', updateDate);
+      updateDate();
+    }
+
+    // 7. CURRENCY
+    if (slug === 'currency-converter') {
+      const aEl = document.getElementById('curr-amount') as HTMLInputElement;
+      const fEl = document.getElementById('curr-from') as HTMLSelectElement;
+      const tEl = document.getElementById('curr-to') as HTMLSelectElement;
+      const rOut = document.getElementById('curr-result');
+
+      const RATES: Record<string, number> = {
+        USD: 1.0,
+        EUR: 0.92,
+        GBP: 0.79,
+        CAD: 1.36,
+        AUD: 1.52,
+        JPY: 154.5,
+        CHF: 0.88,
+      };
+
+      function updateCurrency() {
+        const amt = parseFloat(aEl.value) || 0;
+        const from = fEl.value;
+        const to = tEl.value;
+        const inUSD = amt / (RATES[from] || 1);
+        const converted = inUSD * (RATES[to] || 1);
+        if (rOut) rOut.textContent = `${converted.toFixed(2)} ${to}`;
+      }
+
+      aEl?.addEventListener('input', updateCurrency);
+      fEl?.addEventListener('change', updateCurrency);
+      tEl?.addEventListener('change', updateCurrency);
+    }
+
+    // 8. SCIENTIFIC
+    if (slug === 'scientific-calculator') {
+      const display = document.getElementById('calc-display') as HTMLInputElement;
+      let expr = '';
+
+      document.querySelectorAll('.calc-key').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = btn.getAttribute('data-val');
+          if (!display || !val) return;
+
+          if (val === 'C') {
+            expr = '';
+            display.value = '0';
+          } else if (val === '=') {
+            try {
+              // Safe evaluation using simple function parsing
+              const sanitized = expr.replace(/[^0-9+\-*/.]/g, '');
+              const res = Function(`'use strict'; return (${sanitized})`)();
+              display.value = res.toString();
+              expr = res.toString();
+            } catch {
+              display.value = 'Error';
+              expr = '';
+            }
+          } else if (val === 'sin') {
+            const num = parseFloat(display.value) || 0;
+            display.value = Math.sin((num * Math.PI) / 180).toFixed(4);
+            expr = display.value;
+          } else if (val === 'cos') {
+            const num = parseFloat(display.value) || 0;
+            display.value = Math.cos((num * Math.PI) / 180).toFixed(4);
+            expr = display.value;
+          } else if (val === 'sqrt') {
+            const num = parseFloat(display.value) || 0;
+            display.value = Math.sqrt(num).toFixed(4);
+            expr = display.value;
+          } else {
+            if (display.value === '0' && val !== '.') expr = '';
+            expr += val;
+            display.value = expr;
+          }
+        });
+      });
+    }
+  }
+</script>
+

@@ -1,22 +1,22 @@
 [
   {
-    "heading": "Dedicated Teams",
-    "content": "Benefit from our committed teams who ensure your success is personal. Count on expert guidance and exceptional results throughout your project journey.",
+    "heading": "Focused Micro-SaaS",
+    "content": "Targeted, lightweight software tools engineered to solve specific operational headaches without enterprise bloat.",
     "svg": "groups"
   },
   {
-    "heading": "Simplicity and Affordability",
-    "content": "Find easy-to-use, affordable solutions with ScrewFast's line of tools and equipment. Our products make procurement simple and keep projects within budget.",
-    "svg": "verified"
+    "heading": "Free Online Utilities",
+    "content": "Instant client-side developer and creator tools including JSON Formatter, Password Entropy Analyzer, and QR Code Generator.",
+    "svg": "tools"
   },
   {
-    "heading": "Comprehensive Documentation",
-    "content": "Integrate with ease using ScrewFast's exhaustive guides and libraries. Achieve seamless product adoption with our full suite of documentation designed for your success.",
-    "svg": "books"
+    "heading": "Curated Resource Library",
+    "content": "Production checklists, technical specifications, and agency onboarding guides built to accelerate your product launches.",
+    "svg": "dashboard"
   },
   {
-    "heading": "User-Centric Design",
-    "content": "Experience the difference with ScrewFast's user-focused design – where functionality meets practicality for an enhanced work experience.",
-    "svg": "frame"
+    "heading": "Modern Serverless Architecture",
+    "content": "Blazing fast global edge delivery with zero-maintenance, zero-cold-start reliability powered by modern cloud native infrastructure.",
+    "svg": "house"
   }
 ]

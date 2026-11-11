@@ -1,55 +1,48 @@
 ---
-title: 'SF-FN F303'
-description: 'Boulons hexagonaux'
+title: 'SeatSentry'
+description: 'SaaS Inactive User & Seat Waste Monitor'
 main:
-  id: 4
+  id: 3
   content: |
-    Découvrez les boulons hexagonaux SF-FN F303 – le choix parfait pour les applications de fixation lourdes. Conçus avec précision et durabilité, ces boulons hexagonaux offrent la force et la fiabilité dont vous avez besoin pour vos projets les plus exigeants.
-  imgCard: '@/images/product-image-4.avif'
-  imgMain: '@/images/product-image-main-4.avif'
-  imgAlt: 'Maquettes de boîtes de boulons hexagonaux'
+    SeatSentry hooks into your team workspace accounts (Google Workspace, Microsoft 365, Slack, GitHub) to instantly detect dormant users, orphaned seats, and offboarding oversights that silently inflate your monthly software bills.
+  imgCard: '@/images/product-image-1.avif'
+  imgMain: '@/images/product-image-main-1.avif'
+  imgAlt: 'SeatSentry license optimization overview dashboard'
 tabs:
   - id: 'tabs-with-card-item-1'
     dataTab: '#tabs-with-card-1'
-    title: 'Description'
+    title: 'Overview'
   - id: 'tabs-with-card-item-2'
     dataTab: '#tabs-with-card-2'
-    title: 'Spécifications'
-  - id: 'tabs-with-card-item-3'
-    dataTab: '#tabs-with-card-3'
-    title: 'Plans'
+    title: 'Governance'
 longDescription:
-  title: 'Solutions de fixation robustes'
-  subTitle: |
-    Les boulons hexagonaux SF-FN F303 sont conçus pour relever les défis de fixation les plus difficiles avec aisance. Que vous travailliez sur des projets de construction ou des machines lourdes, ces boulons hexagonaux offrent la force et la fiabilité nécessaires.
-  btnTitle: 'Contactez le service commercial pour en savoir plus'
-  btnURL: '#'
+  title: 'Recover Wasted SaaS Spend Automatically'
+  subTitle: 'Stop paying for licenses assigned to ex-employees, contractors who finished months ago, or unused accounts.'
+  btnTitle: 'Join Waitlist'
+  btnURL: '/contact'
 descriptionList:
-  - title: 'Solidité et durabilité'
-    subTitle: 'Fabriqués à partir de matériaux de haute qualité, ces boulons hexagonaux sont conçus pour supporter des charges lourdes et des conditions difficiles.'
-  - title: 'Ingénierie de précision'
-    subTitle: 'Conçus avec des filets coupés avec précision et des spécifications exactes, garantissant un ajustement serré et sécurisé à chaque fois.'
-  - title: 'Polyvalence'
-    subTitle: "Adaptés à une large gamme d'applications, de la construction aux machines, offrant des solutions de fixation polyvalentes."
+  - title: 'Dormancy Detection'
+    subTitle: 'Flags any account inactive for 30, 60, or 90 days across connected SaaS providers.'
+  - title: 'Offboarding Assurance'
+    subTitle: 'Verifies complete account decommissioning when an employee leaves the company.'
+  - title: 'Instant ROI Dashboard'
+    subTitle: 'Calculate exact dollar savings achieved each month through reclaimed seat licenses.'
 specificationsLeft:
-  - title: 'Matériau'
-    subTitle: 'Fabriqués en acier ou en alliage de qualité supérieure, offrant une résistance exceptionnelle et une résistance à la corrosion.'
-  - title: 'Conception du filetage'
-    subTitle: 'Des filets coupés avec précision assurent une adhérence optimale et une fiabilité même dans des environnements à haute contrainte.'
-  - title: 'Quantité'
-    subTitle: 'Chaque ensemble comprend une quantité suffisante de boulons hexagonaux pour divers projets et applications.'
-  - title: 'Tailles'
-    subTitle: 'Disponible dans une gamme de tailles pour répondre aux différentes exigences des projets, garantissant polyvalence et compatibilité.'
+  - title: 'Connected Platforms'
+    subTitle: 'Google Workspace, Microsoft 365, Slack, Notion, GitHub, Zoom'
+  - title: 'Audit Cadence'
+    subTitle: 'Continuous weekly scans with real-time Slack/Email digests'
 specificationsRight:
-  - title: 'Finition'
-    subTitle: 'Fini avec un revêtement protecteur pour améliorer la résistance à la corrosion et prolonger la durée de vie.'
-  - title: 'Capacité de charge'
-    subTitle: 'Conçus pour répondre ou dépasser les normes industrielles en matière de capacité de charge, garantissant des performances fiables sous des charges lourdes.'
-  - title: 'Certifications'
-    subTitle: 'Conformes aux normes et certifications industrielles pertinentes, garantissant qualité et fiabilité.'
-  - title: 'Applications'
-    subTitle: "Idéal pour une utilisation dans la construction, les machines, l'automobile et d'autres applications lourdes nécessitant une fixation solide et fiable."
+  - title: 'Target Market'
+    subTitle: 'Startups, IT managers, distributed teams of 15 to 250 seats'
+  - title: 'Pricing'
+    subTitle: '$49/mo flat rate monitor for up to 100 seats'
+tableData:
+  - feature: ['Scan Overhead', 'Read-Only API Tokens']
+    description:
+      - ['Data Stored', 'Metadata only (zero document access)']
+      - ['Compliance', 'SOC-2 compliant security standards']
 blueprints:
-  first: '@/images/blueprint-1.avif'
-  second: '@/images/blueprint-2.avif'
+  first: '@/images/product-image-1.avif'
+  second: '@/images/product-image-main-1.avif'
 ---

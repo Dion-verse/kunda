@@ -15,12 +15,19 @@ const socialIconClass =
   'h-4 w-4 shrink-0 text-neutral-700 dark:text-neutral-400';
 ---
 
+{/* Upstream template license preservation:
+    Built on the open-source ScrewFast Astro template (MIT License).
+    Original design and implementation by mearashadowfax / gulamoff.
+*/}
 <footer class="w-full bg-neutral-300 dark:bg-neutral-900">
   <div class="mx-auto w-full max-w-[85rem] px-4 py-10 sm:px-6 lg:px-16 lg:pt-20 2xl:max-w-(--breakpoint-2xl)">
     <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
       <div class="col-span-full lg:col-span-1">
         {/* Brand Logo */}
         <BrandLogo class="h-auto w-32" />
+        <p class="mt-4 text-xs text-neutral-600 dark:text-neutral-400">
+          A home for useful digital things. Software, digital tools, and knowledge.
+        </p>
       </div>
       {/* Link sections from the copy table (Ecosystem, Company, …) */}
       {footerSections.map(section => (
@@ -35,13 +42,8 @@ const socialIconClass =
                   href={localePath(locale, link.path)}
                   class="inline-flex gap-x-2 rounded-lg text-neutral-600 ring-zinc-500 outline-hidden transition duration-300 hover:text-neutral-500 focus-visible:ring-3 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-hidden"
                 >
-                  {footer.links[link.id]}
+                  {footer.links[link.id as keyof typeof footer.links] || link.id}
                 </a>
-                {link.badge === 'hiring' ? (
-                  <span class="ms-1 inline rounded-lg bg-orange-500 px-2 py-1 text-xs font-bold text-neutral-50">
-                    {footer.hiringBadge}
-                  </span>
-                ) : null}
               </li>
             ))}
           </ul>
@@ -67,48 +69,26 @@ const socialIconClass =
         <p class="text-sm text-neutral-600 dark:text-neutral-400">
           © <span id="current-year"></span>
           {` `}
-          {SITE.title}. {footer.craftedBy}
-          {` `}
-          <a
-            class="rounded-lg font-medium underline underline-offset-2 ring-zinc-500 outline-hidden transition duration-300 hover:text-neutral-700 hover:decoration-dashed focus:outline-hidden focus-visible:ring-3 dark:ring-zinc-200 dark:hover:text-neutral-300"
-            href="https://www.gulamoff.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            gulamoff
-          </a>
-          .
+          {SITE.title}. All rights reserved.
         </p>
       </div>
 
-      {/* Social Brands */}
-      <div>
-        <FooterSocialLink url={socialLinks.facebook} label="Facebook">
-          <Icon name="facebook" class={socialIconClass} title="Facebook" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={socialLinks.x} label="X">
-          <Icon name="x" class={socialIconClass} title="X" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={socialLinks.github} label="GitHub">
-          <Icon name="githubMark" class={socialIconClass} title="GitHub" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={socialLinks.google} label="Google">
-          <Icon name="google" class={socialIconClass} title="Google" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={socialLinks.slack} label="Slack">
-          <Icon name="slack" class={socialIconClass} title="Slack" />
-        </FooterSocialLink>
+      {/* Social Brands - only render active links */}
+      <div class="flex items-center gap-x-2">
+        {socialLinks.github ? (
+          <FooterSocialLink url={socialLinks.github} label="GitHub">
+            <Icon name="githubMark" class={socialIconClass} title="GitHub" />
+          </FooterSocialLink>
+        ) : null}
       </div>
     </div>
 
     <script>
       const year = new Date().getFullYear();
       const element = document.getElementById('current-year');
-      element!.innerText = year.toString();
+      if (element) {
+        element.innerText = year.toString();
+      }
     </script>
   </div>
 </footer>

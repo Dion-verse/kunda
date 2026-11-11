@@ -1,7 +1,6 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
 import CardBlog from '@components/ui/cards/CardBlog.astro';
-import CardBlogRecent from '@components/ui/cards/CardBlogRecent.astro';
 import CardInsight from '@components/ui/cards/CardInsight.astro';
 import { entriesFor } from '@utils/content';
 import { getCopy } from '@/copy';
@@ -17,9 +16,6 @@ const copy = getCopy(locale).blogIndex;
 
 const blogPosts = await entriesFor('blog', locale);
 const insightPosts = await entriesFor('insights', locale);
-
-// Separate the most recent post from others
-const [mostRecentPost, ...otherPosts] = blogPosts;
 ---
 
 <MainLayout
@@ -47,18 +43,13 @@ const [mostRecentPost, ...otherPosts] = blogPosts;
       </p>
     ) : (
       <div class="grid gap-6 lg:grid-cols-2">
-        {otherPosts.map(blogEntry => (
+        {blogPosts.map(blogEntry => (
           <CardBlog blogEntry={blogEntry} />
         ))}
       </div>
     )}
   </section>
-  {/* Most recent blog post */}
-  {mostRecentPost && (
-    <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
-      <CardBlogRecent blogEntry={mostRecentPost} />
-    </section>
-  )}
+
   {/* Insights section */}
   <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
     <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">

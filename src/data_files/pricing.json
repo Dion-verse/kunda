@@ -1,38 +1,39 @@
 {
-  "title": "Simple, Transparent Pricing",
-  "subTitle": "Boost efficiency with ScrewFast's clear, value-driven plans.",
-  "badge": "Best value",
-  "thirdOption": "Enterprise Solutions?",
-  "btnText": "Get a Custom Quote",
-
+  "title": "Simple, Transparent Ecosystem Plans",
+  "subTitle": "Choose the right tier to access KUNDA micro-applications, premium resources, and developer tooling.",
+  "badge": "Community Favorite",
+  "thirdOption": "Custom Digital Solutions?",
+  "btnText": "Get in Touch",
   "starterKit": {
-    "name": "Starter Kit",
-    "description": "Best option for DIY projects",
-    "price": "49",
-    "cents": ".00",
-    "billingFrequency": "USD / monthly",
+    "name": "Community & Free Tools",
+    "description": "Complete access to all browser-first utilities, public checklists, and open knowledge resources.",
+    "price": "0",
+    "cents": "",
+    "billingFrequency": "Free Forever",
     "features": [
-      "Key hardware tools",
-      "Access to guides & tutorials",
-      "Standard support"
+      "Access to all 3+ free browser tools",
+      "No account or credit card required",
+      "Standard resource downloads",
+      "Public documentation and guides",
+      "100% client-side privacy protection"
     ],
-    "purchaseBtnTitle": "Get the Starter Kit",
-    "purchaseLink": "#"
+    "purchaseBtnTitle": "Start Using Free Tools",
+    "purchaseLink": "/tools"
   },
-
   "professionalToolbox": {
-    "name": "Professional Toolbox",
-    "description": "Best for large scale uses",
-    "price": "89",
+    "name": "Pro Maker",
+    "description": "Ideal for independent developers, founders, and boutique digital agencies shipping products.",
+    "price": "29",
     "cents": ".00",
-    "billingFrequency": "USD / monthly",
+    "billingFrequency": "per month",
     "features": [
-      "Premium tool selection",
-      "Priority support",
-      "Exclusive content & deals",
-      "Bulk order discounts"
+      "Priority early access to all Micro-SaaS tools",
+      "Early access to private beta releases",
+      "All editable agency kits (DOCX, Notion)",
+      "Continuous feature updates and bugfixes",
+      "Direct founder support via email"
     ],
-    "purchaseBtnTitle": "Get the Professional Toolbox",
-    "purchaseLink": "#"
+    "purchaseBtnTitle": "Explore Pro Access",
+    "purchaseLink": "/contact"
   }
 }

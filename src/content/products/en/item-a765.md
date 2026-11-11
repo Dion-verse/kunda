@@ -1,54 +1,52 @@
 ---
-title: 'SF-AB A765'
-description: 'Assorted Screw Set'
+title: 'QueuePass'
+description: 'Smart SMS Waitlist & Mobile Queue Management'
 main:
-  id: 2
+  id: 1
   content: |
-    Introducing the SF-AB A765 Assorted Screw Set – the ultimate solution for your screw fastening needs. This comprehensive set includes a wide variety of screws meticulously curated to tackle various projects with ease and precision.
+    QueuePass eliminates physical congestion and front-desk friction for walk-in services, boutique clinics, popups, and community venues. Customers scan a QR code to join an SMS-notified virtual waitlist with real-time countdown updates.
   imgCard: '@/images/product-image-2.avif'
   imgMain: '@/images/product-image-main-2.avif'
-  imgAlt: 'Mockup boxes of assorted screw set'
+  imgAlt: 'QueuePass interface preview on mobile and tablet'
 tabs:
   - id: 'tabs-with-card-item-1'
     dataTab: '#tabs-with-card-1'
-    title: 'Description'
+    title: 'Overview'
   - id: 'tabs-with-card-item-2'
     dataTab: '#tabs-with-card-2'
-    title: 'Specifications'
-  - id: 'tabs-with-card-item-3'
-    dataTab: '#tabs-with-card-3'
-    title: 'Blueprints'
+    title: 'Architecture'
 longDescription:
-  title: 'Versatile Screw Fastening Solutions'
-  subTitle: |
-    The SF-AB A765 Assorted Screw Set offers unmatched versatility and convenience, making it the perfect choice for DIY enthusiasts and professionals alike. With a comprehensive selection of screws, you'll always have the right fastener for the job.
-  btnTitle: 'Contact sales to learn more'
-  btnURL: '#'
+  title: 'Streamline Customer Flow Without Expensive Hardware'
+  subTitle: 'QueuePass delivers a frictionless customer queue experience powered by lightweight web technology and low-latency SMS updates.'
+  btnTitle: 'Join the Beta Waitlist'
+  btnURL: '/contact'
 descriptionList:
-  - title: 'Wide Variety'
-    subTitle: 'Includes a diverse range of screw types and sizes to accommodate various applications and materials.'
-  - title: 'Ease of Use'
-    subTitle: 'Each screw is designed for effortless installation, ensuring hassle-free fastening every time.'
-  - title: 'Convenience'
-    subTitle: 'Eliminates the need for multiple trips to the hardware store, saving time and effort on your projects.'
+  - title: 'Frictionless QR Check-In'
+    subTitle: 'Guests scan a counter QR code to join without downloading any native app or creating a permanent account.'
+  - title: 'Automated SMS Alerts'
+    subTitle: 'Keep guests informed of their position and receive automated call-back notifications when ready.'
+  - title: 'Live Merchant Dashboard'
+    subTitle: 'Staff manage entries from any tablet or phone browser with one-tap status toggles and wait estimation.'
 specificationsLeft:
-  - title: 'Material'
-    subTitle: 'Constructed from high-quality materials such as stainless steel, ensuring durability and corrosion resistance.'
-  - title: 'Assortment'
-    subTitle: 'Contains a generous assortment of screws, including wood screws, machine screws, and sheet metal screws.'
-  - title: 'Quantity'
-    subTitle: 'Each set includes a sufficient quantity of screws to handle a wide range of projects and tasks.'
-  - title: 'Sizes'
-    subTitle: 'Available in various sizes to suit different project requirements, ensuring compatibility and versatility.'
+  - title: 'Target Market'
+    subTitle: 'Walk-in salons, independent medical clinics, urgent care, pop-up events, food trucks'
+  - title: 'Deployment'
+    subTitle: 'Cloud-hosted edge application with zero on-premise hardware required'
+  - title: 'Notifications'
+    subTitle: 'Direct transactional SMS and mobile web dashboard status'
+specificationsRight:
+  - title: 'Status'
+    subTitle: 'Active Beta & Early Access'
+  - title: 'Tier Pricing'
+    subTitle: '$29/mo flat rate per location with included SMS allowance'
+  - title: 'Integrations'
+    subTitle: 'Webhooks, Zapier, and custom POS exports'
 tableData:
-  - feature: ['Specification', 'Value']
+  - feature: ['Cloud Edge Latency', '< 50ms Global']
     description:
-      - ['Length (mm)', 'Various']
-      - ['Weight (g)', 'N/A']
-      - ['Material', 'Stainless Steel']
-      - ['Finish', 'Assorted']
-      - ['Package Contents', 'Various screws in a set']
+      - ['Client App Requirement', 'None (Mobile Browser)']
+      - ['Custom Branding', 'Yes (Logo & Theme)']
 blueprints:
-  first: '@/images/blueprint-1.avif'
-  second: '@/images/blueprint-2.avif'
+  first: '@/images/product-image-2.avif'
+  second: '@/images/product-image-main-2.avif'
 ---

@@ -1,0 +1,26 @@
+{
+  "last_run_timestamp": 1794424739,
+  "published_posts": [
+    {
+      "id": "post-1",
+      "title": "Building Your First Micro-SaaS: A Practical Developer Guide",
+      "date": "2025-11-01"
+    },
+    {
+      "id": "post-2",
+      "title": "The Case for Client-Side Tools: Privacy, Speed, and Simplicity",
+      "date": "2025-10-20"
+    },
+    {
+      "id": "post-3",
+      "title": "Architecture Deep-Dive: Serverless Edge Deployments",
+      "date": "2025-10-15"
+    },
+    {
+      "id": "post-4",
+      "title": "Beyond the Cloud: In-Browser Document Processing for Ultimate Data Privacy",
+      "topic": "Why In-Browser Document Processing Is the Future of Data Privacy",
+      "date": "2026-11-11"
+    }
+  ]
+}

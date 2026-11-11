@@ -1,0 +1,137 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import type { Tool } from '@/data/tools';
+import { CATEGORIES } from '@/data/tools';
+import ToolRelated from './ToolRelated.astro';
+
+interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+const categoryMeta = CATEGORIES.find(c => c.id === tool.category);
+
+const pageTitle = tool.seoTitle || `${tool.title} â€” Free In-Browser Tool`;
+const pageDescription =
+  tool.seoDescription ||
+  `${tool.description} Fast, secure, and 100% processed in your browser.`;
+---
+
+<MainLayout
+  title={pageTitle}
+  description={pageDescription}
+  section="Tools"
+>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: tool.title,
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Any',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      description: tool.description,
+    })}
+  />
+  <div class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 2xl:max-w-full">
+    {/* Breadcrumbs */}
+    <nav class="mb-6 flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-neutral-700 dark:hover:text-neutral-200">Home</a>
+      <span>/</span>
+      <a href="/tools" class="hover:text-neutral-700 dark:hover:text-neutral-200">Tools</a>
+      <span>/</span>
+      <a href={`/tools/${tool.category}`} class="hover:text-neutral-700 dark:hover:text-neutral-200 capitalize">
+        {categoryMeta?.label || tool.category}
+      </a>
+      <span>/</span>
+      <span class="font-medium text-neutral-800 dark:text-neutral-200">{tool.title}</span>
+    </nav>
+
+    {/* Tool Header */}
+    <div class="mb-8">
+      <div class="flex flex-wrap items-center gap-2.5 mb-3">
+        <span class={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${categoryMeta?.bgColor || 'bg-neutral-100'} ${categoryMeta?.color || 'text-neutral-700'} ${categoryMeta?.darkBgColor || 'dark:bg-neutral-700/50'}`}>
+          <span>{categoryMeta?.icon || 'âš™ï¸ '}</span>
+          {categoryMeta?.label || tool.category}
+        </span>
+        <span class="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300">
+          <svg class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          100% Client-Side Privacy
+        </span>
+        {tool.popular && (
+          <span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold text-orange-800 uppercase dark:bg-orange-950/70 dark:text-orange-300">
+            Popular
+          </span>
+        )}
+      </div>
+
+      <h1 class="text-3xl font-bold tracking-tight text-neutral-800 sm:text-4xl dark:text-neutral-100">
+        {tool.title}
+      </h1>
+      <p class="mt-2 max-w-3xl text-base text-neutral-600 dark:text-neutral-400">
+        {tool.description}
+      </p>
+    </div>
+
+    {/* Tool Application Container */}
+    <div class="rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-sm sm:p-8 dark:border-neutral-700/60 dark:bg-neutral-800/80">
+      <slot />
+    </div>
+
+    {/* Feature & Privacy Guarantees */}
+    <div class="mt-12 grid gap-6 sm:grid-cols-3">
+      <div class="rounded-xl border border-neutral-200/80 bg-white p-5 shadow-xs dark:border-neutral-700/60 dark:bg-neutral-800/50">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="text-sm font-bold text-neutral-800 dark:text-neutral-200">Zero Server Uploads</h3>
+        </div>
+        <p class="text-xs text-neutral-600 leading-relaxed dark:text-neutral-400">
+          Your files and text never leave your machine. Processing happens entirely in client memory via modern Web APIs.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-neutral-200/80 bg-white p-5 shadow-xs dark:border-neutral-700/60 dark:bg-neutral-800/50">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-100 text-orange-600 dark:bg-orange-950 dark:text-orange-400">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-sm font-bold text-neutral-800 dark:text-neutral-200">Instant Execution</h3>
+        </div>
+        <p class="text-xs text-neutral-600 leading-relaxed dark:text-neutral-400">
+          No queue, no rate limits, no waiting for remote server conversions. Calculations finish at hardware speed.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-neutral-200/80 bg-white p-5 shadow-xs dark:border-neutral-700/60 dark:bg-neutral-800/50">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-sm font-bold text-neutral-800 dark:text-neutral-200">100% Free Forever</h3>
+        </div>
+        <p class="text-xs text-neutral-600 leading-relaxed dark:text-neutral-400">
+          Part of KUNDA's core digital utilities ecosystem. No credit cards, no login, no watermarks.
+        </p>
+      </div>
+    </div>
+
+    {/* Related Tools */}
+    <ToolRelated currentTool={tool} />
+  </div>
+</MainLayout>

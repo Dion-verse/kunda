@@ -1,0 +1,39 @@
+---
+import { CATEGORIES } from '@/data/tools';
+
+interface Props {
+  activeCategory?: string;
+}
+
+const { activeCategory = 'all' } = Astro.props;
+---
+
+<div class="flex flex-wrap items-center justify-center gap-2" role="tablist" aria-label="Tool Categories">
+  <button
+    type="button"
+    data-filter="all"
+    class={`tool-filter-btn rounded-xl px-4 py-2 text-sm font-semibold transition ${
+      activeCategory === 'all'
+        ? 'bg-orange-500 text-white shadow-md shadow-orange-500/20'
+        : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700'
+    }`}
+  >
+    All Tools
+  </button>
+
+  {CATEGORIES.map(cat => (
+    <button
+      type="button"
+      data-filter={cat.id}
+      class={`tool-filter-btn inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-semibold transition ${
+        activeCategory === cat.id
+          ? 'bg-orange-500 text-white shadow-md shadow-orange-500/20'
+          : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700'
+      }`}
+    >
+      <span>{cat.icon}</span>
+      <span>{cat.label.replace(' Tools', '')}</span>
+    </button>
+  ))}
+</div>
+

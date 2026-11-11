@@ -2,19 +2,20 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import HeroSection from '@components/sections/landing/HeroSection.astro';
 import HeroSectionAlt from '@components/sections/landing/HeroSectionAlt.astro';
-import ClientsSection from '@components/sections/landing/ClientsSection.astro';
 import FeaturesGeneral from '@components/sections/features/FeaturesGeneral.astro';
 import FeaturesNavs from '@components/sections/features/FeaturesNavs.astro';
-import TestimonialsSection from '@components/sections/testimonials/TestimonialsSection.astro';
 import PricingSection from '@components/sections/pricing/PricingSection.astro';
 import FAQ from '@components/sections/misc/FAQ.astro';
 import AnnouncementBanner from '@components/ui/banners/AnnouncementBanner.astro';
+import ToolCard from '@/components/tools/ToolCard.astro';
+import ToolCategoryCard from '@/components/tools/ToolCategoryCard.astro';
+import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
+import { CATEGORIES, featuredTools } from '@/data/tools';
 import heroImage from '@images/hero-image.avif';
-import featureImage from '@images/features-image.avif';
+import featureImage from '@images/kunda-brand-board.jpg';
 import construction from '@images/construction-image.avif';
 import tools from '@images/automated-tools.avif';
 import dashboard from '@images/dashboard-image.avif';
-import { partnersData } from '@data/constants';
 import { getCopy } from '@/copy';
 import { localePath, type MarketingLocale } from '@utils/locale';
 
@@ -26,48 +27,26 @@ interface Props {
 const { locale } = Astro.props;
 const t = getCopy(locale);
 const copy = t.home;
-
-const avatarSrcs: Array<string> = [
-  'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
-  'https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
-  'https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80',
-  'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
-];
-
-const testimonials = copy.testimonials.quotes.map(quote => ({
-  ...quote,
-  avatarSrc:
-    'https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?q=80&w=1453&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80',
-}));
 ---
 
 <MainLayout>
   <AnnouncementBanner
     btnId="dismiss-button"
     btnTitle={copy.banner}
-    url="https://github.com/mearashadowfax/ScrewFast"
+    url={localePath(locale, '/tools')}
   />
 
+  {/* Authentic Hero Section without fabricated social proof */}
   <HeroSection
     title={copy.hero.title}
     subTitle={copy.hero.subTitle}
     primaryBtn={copy.hero.primaryBtn}
     primaryBtnURL={localePath(locale, '/products')}
     secondaryBtn={copy.hero.secondaryBtn}
-    secondaryBtnURL={localePath(locale, '/contact')}
-    withReview={true}
-    avatars={avatarSrcs}
-    rating={copy.hero.rating}
-    starCount={4}
-    reviews={copy.hero.reviews}
+    secondaryBtnURL={localePath(locale, '/tools')}
+    withReview={false}
     src={heroImage}
     alt={copy.hero.imageAlt}
-  />
-
-  <ClientsSection
-    title={copy.clients.title}
-    subTitle={copy.clients.subTitle}
-    partners={partnersData}
   />
 
   <FeaturesGeneral
@@ -101,12 +80,48 @@ const testimonials = copy.testimonials.quotes.map(quote => ({
     ]}
   />
 
-  <TestimonialsSection
-    title={copy.testimonials.title}
-    subTitle={copy.testimonials.subTitle}
-    testimonials={testimonials}
-    statistics={copy.testimonials.statistics}
-  />
+  {/* KUNDA 49-Tool Ecosystem Showcase */}
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+    <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+      <div>
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-800 dark:bg-orange-950 dark:text-orange-300 mb-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse"></span>
+          Privacy-First Utilities
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-neutral-800 sm:text-3xl lg:text-4xl dark:text-neutral-200">
+          Essential In-Browser Tools
+        </h2>
+        <p class="mt-2 text-sm text-neutral-600 sm:text-base dark:text-neutral-400 max-w-xl">
+          Deterministic developer, business, and document utilities processed directly inside your browser. No telemetry or server uploads.
+        </p>
+      </div>
+
+      <PrimaryCTA
+        title="Explore All 49 Tools"
+        url={localePath(locale, '/tools')}
+      />
+    </div>
+
+    {/* 6 Category Highlights */}
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10">
+      {CATEGORIES.map(category => (
+        <ToolCategoryCard category={category} />
+      ))}
+    </div>
+
+    {/* Featured Tools Grid */}
+    <div class="border-t border-neutral-200 pt-8 dark:border-neutral-800">
+      <div class="mb-4 flex items-center justify-between">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-neutral-500">Popular Utilities</h3>
+        <span class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">100% In-Browser Privacy</span>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {featuredTools().slice(0, 4).map(tool => (
+          <ToolCard tool={tool} />
+        ))}
+      </div>
+    </div>
+  </section>
 
   <PricingSection pricing={t.data.pricing} />
 
@@ -115,6 +130,6 @@ const testimonials = copy.testimonials.quotes.map(quote => ({
   <HeroSectionAlt
     title={copy.heroAlt.title}
     subTitle={copy.heroAlt.subTitle}
-    url="https://github.com/mearashadowfax/ScrewFast"
+    url="https://github.com/kunda-works"
   />
 </MainLayout>

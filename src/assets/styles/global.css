@@ -11,6 +11,15 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* KUNDA Brand Tokens */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --color-kunda-ink: #202723;
+  --color-kunda-orange: #E56D43;
+  --color-kunda-orange-dark: #B94F2F;
+  --color-kunda-sage: #9AA795;
+  --color-kunda-stone: #E9E5DC;
+  --color-kunda-cream: #F7F5EF;
+
   /* https://tailwindcss.com/docs/colors#customizing-your-colors */
   --color-*: initial;
   --color-transparent: transparent;

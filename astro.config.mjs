@@ -8,7 +8,7 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
   // https://docs.astro.build/en/guides/images/#authorizing-remote-images
-  site: 'https://screwfast.uk',
+  site: 'https://kunda.works',
   image: {
     domains: ['images.unsplash.com'],
   },
@@ -34,7 +34,7 @@ export default defineConfig({
       },
     }),
     starlight({
-      title: 'ScrewFast Docs',
+      title: 'KUNDA Docs',
       // https://github.com/withastro/starlight/blob/main/packages/starlight/CHANGELOG.md
       // If no Astro and Starlight i18n configurations are provided, the built-in default locale is used in Starlight and a matching Astro i18n configuration is generated/used.
       // If only a Starlight i18n configuration is provided, an equivalent Astro i18n configuration is generated/used.
@@ -67,7 +67,7 @@ export default defineConfig({
           items: [{ autogenerate: { directory: 'guides' } }],
         },
         {
-          label: 'Tools & Equipment',
+          label: 'Using KUNDA',
           // Translated guide intros exist per locale; these pages fall back to English.
           translations: {
             de: 'Werkzeuge & Ausrüstung',
@@ -83,14 +83,14 @@ export default defineConfig({
           ],
         },
         {
-          label: 'Construction Services',
+          label: 'Product Guides',
           translations: {
-            de: 'Baudienstleistungen',
-            es: 'Servicios de Construcción',
-            fa: 'خدمات ساخت‌وساز',
-            fr: 'Services de Construction',
-            ja: '建設サービス',
-            'zh-cn': '施工服务',
+            de: 'Produkthandbücher',
+            es: 'Guías de Producto',
+            fa: 'راهنمای محصول',
+            fr: 'Guides Produit',
+            ja: '製品ガイド',
+            'zh-cn': '产品指南',
           },
           items: [{ autogenerate: { directory: 'construction' } }],
         },
@@ -103,7 +103,7 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/mearashadowfax/ScrewFast',
+          href: 'https://github.com/kunda-works',
         },
       ],
       disable404Route: true,
@@ -121,14 +121,14 @@ export default defineConfig({
           tag: 'meta',
           attrs: {
             property: 'og:image',
-            content: 'https://screwfast.uk' + '/social.webp',
+            content: 'https://kunda.works' + '/og-social.png',
           },
         },
         {
           tag: 'meta',
           attrs: {
             property: 'twitter:image',
-            content: 'https://screwfast.uk' + '/social.webp',
+            content: 'https://kunda.works' + '/og-social.png',
           },
         },
       ],

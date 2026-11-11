@@ -4,12 +4,19 @@
  * (`copy.nav.labels`, `copy.nav.footer.sections`), so translators never touch
  * a path and code never keys on a translated label.
  */
-export type NavLinkId = 'home' | 'products' | 'services' | 'blog' | 'contact';
+export type NavLinkId =
+  | 'home'
+  | 'products'
+  | 'micro-saas'
+  | 'tools'
+  | 'blog'
+  | 'services'
+  | 'contact';
 
 export const navLinks: { id: NavLinkId; path: string }[] = [
-  { id: 'home', path: '/' },
   { id: 'products', path: '/products' },
-  { id: 'services', path: '/services' },
+  { id: 'micro-saas', path: '/micro-saas' },
+  { id: 'tools', path: '/tools' },
   { id: 'blog', path: '/blog' },
   { id: 'contact', path: '/contact' },
 ];
@@ -18,11 +25,11 @@ export type FooterSectionId = 'ecosystem' | 'company';
 export type FooterLinkId =
   | 'documentation'
   | 'tools'
+  | 'products'
   | 'services'
   | 'about'
   | 'blog'
-  | 'careers'
-  | 'customers';
+  | 'contact';
 
 export const footerSections: {
   id: FooterSectionId;
@@ -32,25 +39,24 @@ export const footerSections: {
     id: 'ecosystem',
     links: [
       { id: 'documentation', path: '/welcome-to-docs/' },
-      { id: 'tools', path: '/products' },
-      { id: 'services', path: '/services' },
+      { id: 'products', path: '/products' },
+      { id: 'tools', path: '/tools' },
     ],
   },
   {
     id: 'company',
     links: [
-      { id: 'about', path: '#' },
+      { id: 'about', path: '/welcome-to-docs/' },
       { id: 'blog', path: '/blog' },
-      { id: 'careers', path: '#', badge: 'hiring' },
-      { id: 'customers', path: '#' },
+      { id: 'contact', path: '/contact' },
     ],
   },
 ];
 
 export const socialLinks = {
-  facebook: 'https://www.facebook.com/',
-  x: 'https://twitter.com/',
-  github: 'https://github.com/mearashadowfax/ScrewFast',
-  google: 'https://www.google.com/',
-  slack: 'https://slack.com/',
+  facebook: '',
+  x: '',
+  github: 'https://github.com/kunda-works',
+  google: '',
+  slack: '',
 };
