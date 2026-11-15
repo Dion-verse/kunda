@@ -1,5 +1,5 @@
 {
-  "last_run_timestamp": 1794424739,
+  "last_run_timestamp": 1794749945,
   "published_posts": [
     {
       "id": "post-1",
@@ -21,6 +21,12 @@
       "title": "Beyond the Cloud: In-Browser Document Processing for Ultimate Data Privacy",
       "topic": "Why In-Browser Document Processing Is the Future of Data Privacy",
       "date": "2026-11-11"
+    },
+    {
+      "id": "post-5",
+      "title": "Beyond Buzzwords: Selecting AI Assistants for Your Small Business in 2026",
+      "topic": "Best AI Assistants for Small Businesses in 2026: Capabilities, Privacy, Pricing and Real-World Use Cases",
+      "date": "2026-11-15"
     }
   ]
 }
