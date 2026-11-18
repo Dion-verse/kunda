@@ -1,5 +1,5 @@
 {
-  "last_run_timestamp": 1794749945,
+  "last_run_timestamp": 1795015107,
   "published_posts": [
     {
       "id": "post-1",
@@ -27,6 +27,12 @@
       "title": "Beyond Buzzwords: Selecting AI Assistants for Your Small Business in 2026",
       "topic": "Best AI Assistants for Small Businesses in 2026: Capabilities, Privacy, Pricing and Real-World Use Cases",
       "date": "2026-11-15"
+    },
+    {
+      "id": "post-6",
+      "title": "Crafting Your AI Edge: A Practical Guide to ChatGPT, Gemini, and Claude for Business Work",
+      "topic": "ChatGPT vs Gemini vs Claude for Business Work: Which Tasks Does Each Handle Best?",
+      "date": "2026-11-18"
     }
   ]
 }
