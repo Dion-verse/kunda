@@ -1,5 +1,5 @@
 {
-  "last_run_timestamp": 1795015107,
+  "last_run_timestamp": 1795356997,
   "published_posts": [
     {
       "id": "post-1",
@@ -33,6 +33,12 @@
       "title": "Crafting Your AI Edge: A Practical Guide to ChatGPT, Gemini, and Claude for Business Work",
       "topic": "ChatGPT vs Gemini vs Claude for Business Work: Which Tasks Does Each Handle Best?",
       "date": "2026-11-18"
+    },
+    {
+      "id": "post-7",
+      "title": "Beyond the Buzzwords: Engineering Smarter Meetings with AI Assistants",
+      "topic": "The Best AI Meeting Assistants for Transcription, Summaries and Follow-Up Actions",
+      "date": "2026-11-22"
     }
   ]
 }

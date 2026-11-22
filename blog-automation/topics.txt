@@ -1,6 +1,5 @@
 # KUNDA Official Editorial Topic Queue
 # Processed sequentially by scripts/generate_post.py and .github/workflows/autoblog.yml
-The Best AI Meeting Assistants for Transcription, Summaries and Follow-Up Actions
 AI Research Assistants That Cite Sources: How to Compare Accuracy, Traceability and Cost
 The Best AI Note-Taking and Knowledge-Management Apps for Individuals and Teams
 AI Email Assistants for Freelancers: Inbox Triage, Drafting and Follow-Ups Compared
